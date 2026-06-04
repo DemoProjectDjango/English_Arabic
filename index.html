@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonprofit Cloud Salesforce Experts | NPSP Implementation for Charities</title>
+<meta name="description" content="Your dedicated Nonprofit Cloud & Salesforce experts — NPSP implementation, donor CRM, and full-service Salesforce consulting for nonprofits and charities.">
+
+<!-- Preconnect for fonts — non-render-blocking -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- font-display:swap prevents render block -->
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ─────────────────────────────────────────
+   RESET & TOKENS
+───────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --blue:#0176D3;--blue-dk:#014486;--blue-lt:#E8F4FD;--blue-md:#C8E3F8;
+  --text:#0A0A0A;--text-mid:#444;--text-soft:#777;
+  --border:#E5E5E5;--bg:#fff;--bg-soft:#F7F9FC;--green:#2E844A;
+  --sora:'Sora',system-ui,sans-serif;--lora:'Lora',Georgia,serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+body{font-family:var(--sora);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1}
+
+/* ─────────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────────── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:var(--blue);z-index:200;
+  transition:width .05s linear;
+  will-change:width;
+}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 64px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:box-shadow .3s var(--ease);
+}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-icon{
+  width:32px;height:32px;background:var(--blue);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s var(--ease);
+}
+.nav-logo:hover .nav-logo-icon{transform:rotate(-8deg) scale(1.08)}
+.nav-logo-icon svg{width:22px;height:22px}
+.nav-logo-name{font-size:.88rem;font-weight:600;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
+.nav-logo-name span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{
+  font-size:.83rem;font-weight:400;color:var(--text-mid);text-decoration:none;
+  position:relative;padding-bottom:2px;transition:color .2s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+  background:var(--blue);transition:width .25s var(--ease);
+}
+.nav-links a:hover{color:var(--blue)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--blue)}
+.nav-btn{
+  background:var(--blue);color:#fff;padding:9px 20px;border-radius:6px;
+  font-size:.83rem;font-weight:500;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;display:inline-block;
+  /* magnetic handled by JS */
+}
+.nav-btn:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 4px 16px rgba(1,118,211,.3)}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero{
+  min-height:100vh;padding:120px 64px 80px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+/* Spotlight follows mouse — updated via JS CSS var */
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(1,118,211,.05) 0%,transparent 70%);
+  transition:background .1s;z-index:0;
+}
+.hero-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  will-change:transform;transition:transform .08s linear;
+}
+.hero-orb-1{
+  width:560px;height:560px;top:-160px;right:-160px;
+  background:radial-gradient(circle,var(--blue-lt) 0%,transparent 70%);
+}
+.hero-orb-2{
+  width:340px;height:340px;bottom:-80px;left:-80px;
+  background:radial-gradient(circle,#EDF7F0 0%,transparent 70%);
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--blue-lt);color:var(--blue);padding:6px 14px;
+  border-radius:100px;font-size:.72rem;font-weight:500;letter-spacing:.04em;
+  margin-bottom:28px;
+  opacity:0;transform:translateY(16px);
+  animation:fadeUp .55s .05s var(--ease) forwards;
+}
+.hero-tag-dot{
+  width:6px;height:6px;background:var(--blue);border-radius:50%;
+  animation:blink 2s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* Word-by-word h1 reveal */
+.hero-h1{
+  font-family:var(--lora);font-size:clamp(2.6rem,4vw,3.8rem);font-weight:500;
+  line-height:1.18;letter-spacing:-.025em;color:var(--text);margin-bottom:24px;
+}
+.hero-h1 .word{
+  display:inline-block;opacity:0;transform:translateY(22px);
+  animation:fadeUp .5s var(--ease) forwards;
+}
+.hero-h1 em{font-style:italic;color:var(--blue)}
+
+.hero-p{
+  font-size:1rem;font-weight:300;color:var(--text-mid);line-height:1.75;
+  max-width:460px;margin-bottom:40px;
+  opacity:0;animation:fadeUp .55s .55s var(--ease) forwards;
+}
+.hero-actions{
+  display:flex;align-items:center;gap:14px;
+  opacity:0;animation:fadeUp .55s .65s var(--ease) forwards;
+}
+.btn-blue{
+  background:var(--blue);color:#fff;padding:13px 28px;border-radius:7px;
+  font-size:.88rem;font-weight:500;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  display:inline-flex;align-items:center;gap:7px;position:relative;overflow:hidden;
+}
+.btn-blue::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0);transition:background .2s;
+}
+.btn-blue:hover::before{background:rgba(255,255,255,.08)}
+.btn-blue:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,118,211,.3)}
+.btn-ghost{
+  color:var(--text-mid);font-size:.88rem;font-weight:400;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;transition:color .2s;
+}
+.btn-ghost svg{transition:transform .25s var(--ease)}
+.btn-ghost:hover{color:var(--blue)}
+.btn-ghost:hover svg{transform:translateX(4px)}
+
+.hero-proof{
+  display:flex;gap:36px;margin-top:52px;padding-top:36px;border-top:1px solid var(--border);
+  opacity:0;animation:fadeUp .55s .75s var(--ease) forwards;
+}
+.proof-item{display:flex;flex-direction:column;gap:3px}
+.proof-num{font-family:var(--lora);font-size:1.8rem;font-weight:500;color:var(--text);letter-spacing:-.03em;line-height:1}
+.proof-num b{color:var(--blue);font-weight:500}
+.proof-label{font-size:.72rem;color:var(--text-soft);font-weight:400;letter-spacing:.02em;margin-top:4px}
+
+/* HERO CARD */
+.hero-right{
+  opacity:0;animation:fadeIn .7s .45s var(--ease) forwards;
+  perspective:900px;
+}
+.dash-card{
+  background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;
+  box-shadow:0 4px 40px rgba(0,0,0,.07);position:relative;
+  transform-style:preserve-3d;
+  transition:box-shadow .3s var(--ease);
+  will-change:transform;
+}
+.dash-float-tag{
+  position:absolute;top:-16px;right:24px;background:var(--blue);color:#fff;
+  font-size:.7rem;font-weight:500;padding:6px 14px;border-radius:100px;
+  box-shadow:0 4px 14px rgba(1,118,211,.35);
+  animation:floatY 3s ease infinite;
+}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.dash-title{font-size:.88rem;font-weight:600}
+.dash-badge{
+  background:#EBF9F1;color:var(--green);font-size:.7rem;font-weight:500;
+  padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;
+}
+.dash-badge::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s ease infinite}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.kpi{background:var(--bg-soft);border-radius:10px;padding:14px;transition:background .2s}
+.kpi:hover{background:var(--blue-lt)}
+.kpi-val{font-family:var(--lora);font-size:1.5rem;font-weight:500;color:var(--text);margin-bottom:3px}
+.kpi-val span{color:var(--blue)}
+.kpi-label{font-size:.68rem;color:var(--text-soft)}
+.dash-progress-wrap{margin-bottom:20px}
+.dash-progress-head{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-soft);margin-bottom:8px}
+.dash-progress-head strong{color:var(--text);font-weight:500}
+.dash-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.dash-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--blue),#5BC0EB);
+  border-radius:3px;width:0;
+  animation:barFill 1.4s 1s var(--ease) forwards;
+}
+@keyframes barFill{to{width:73%}}
+.dash-donors{display:flex;align-items:center;gap:10px}
+.donor-avatars{display:flex}
+.donor-av{
+  width:28px;height:28px;border-radius:50%;border:2px solid #fff;
+  margin-left:-8px;display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:600;color:#fff;
+  transition:transform .2s var(--ease);
+}
+.donor-av:first-child{margin-left:0}
+.donor-avatars:hover .donor-av{transform:translateY(-3px);margin-left:-4px}
+.donor-av:nth-child(1){background:#0176D3}
+.donor-av:nth-child(2){background:#2E844A}
+.donor-av:nth-child(3){background:#CA8A04}
+.donor-av:nth-child(4){background:#9333EA}
+.donor-text{font-size:.75rem;color:var(--text-soft)}
+.donor-text strong{color:var(--text);font-weight:500}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+
+/* ─────────────────────────────────────────
+   SHARED SECTION TOKENS
+───────────────────────────────────────── */
+.wrap{max-width:1200px;margin:0 auto}
+.section-tag{
+  font-size:.72rem;font-weight:500;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--blue);margin-bottom:12px;
+}
+.section-h2{
+  font-family:var(--lora);font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:500;
+  line-height:1.2;letter-spacing:-.02em;color:var(--text);margin-bottom:16px;
+}
+.section-h2 em{font-style:italic;color:var(--blue)}
+.section-p{font-size:.95rem;font-weight:300;color:var(--text-mid);line-height:1.8}
+
+/* Scroll reveal — GPU only */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .65s var(--ease),transform .65s var(--ease);
+  will-change:transform,opacity;
+}
+.reveal.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ─────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────── */
+.services{padding:100px 64px}
+.services-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;margin-bottom:56px;
+}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.svc{
+  background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;
+  padding:32px 28px;cursor:default;position:relative;overflow:hidden;
+  transition:border-color .25s,box-shadow .25s;
+  /* 3D tilt handled by JS */
+  transform-style:preserve-3d;will-change:transform;
+}
+/* Ripple on hover — CSS only */
+.svc::after{
+  content:'';position:absolute;
+  width:120%;padding-top:120%;
+  top:var(--ry,50%);left:var(--rx,50%);
+  transform:translate(-50%,-50%) scale(0);
+  background:rgba(1,118,211,.05);border-radius:50%;
+  transition:transform .5s var(--ease),opacity .5s;
+  opacity:0;pointer-events:none;
+}
+.svc:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1}
+.svc:hover{border-color:var(--blue);box-shadow:0 4px 24px rgba(1,118,211,.1)}
+.svc-icon{
+  width:44px;height:44px;background:var(--blue-lt);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  margin-bottom:18px;transition:transform .3s var(--ease),background .25s;
+}
+.svc:hover .svc-icon{transform:scale(1.1) rotate(-4deg);background:var(--blue-md)}
+.svc-name{font-size:.95rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.svc-desc{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7}
+
+/* ─────────────────────────────────────────
+   WHY
+───────────────────────────────────────── */
+.why{padding:100px 64px;background:var(--bg-soft)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.pillars{display:flex;flex-direction:column;margin-top:36px}
+.pillar{
+  display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--border);
+  cursor:default;
+  transition:padding-left .25s var(--ease),background .2s;
+  border-radius:4px;
+}
+.pillar:last-child{border-bottom:none}
+.pillar:hover{padding-left:10px}
+.pillar-n{font-size:.72rem;color:var(--blue);font-weight:500;padding-top:3px;min-width:22px;flex-shrink:0}
+.pillar-title{font-size:.92rem;font-weight:600;margin-bottom:5px}
+.pillar-text{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7}
+.why-quote-block{
+  background:#fff;border:1px solid var(--border);border-left:3px solid var(--blue);
+  border-radius:10px;padding:28px;margin-top:28px;
+  transition:box-shadow .3s var(--ease),transform .3s var(--ease);
+}
+.why-quote-block:hover{box-shadow:0 6px 28px rgba(1,118,211,.1);transform:translateY(-3px)}
+.why-quote-text{font-family:var(--lora);font-style:italic;font-size:1rem;line-height:1.7;color:var(--text-mid);margin-bottom:14px}
+.why-quote-by{font-size:.78rem;color:var(--text-soft)}
+.why-quote-by strong{color:var(--text);font-weight:500}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.badge{
+  background:#fff;border:1px solid var(--border);border-radius:6px;
+  padding:6px 13px;font-size:.72rem;color:var(--text-soft);font-weight:400;
+  transition:border-color .2s,color .2s,transform .15s;cursor:default;
+}
+.badge:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+
+/* ─────────────────────────────────────────
+   PROCESS
+───────────────────────────────────────── */
+.process{padding:100px 64px}
+.process-head{text-align:center;max-width:520px;margin:0 auto 64px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.steps::before{
+  content:'';position:absolute;
+  top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);
+  height:1px;background:var(--border);
+}
+/* Animated line fill on scroll */
+.steps::after{
+  content:'';position:absolute;
+  top:28px;left:calc(12.5% + 14px);
+  height:1px;background:var(--blue);width:0;
+  transition:width 1.2s .3s var(--ease);
+}
+.steps.on::after{width:calc(75% - 28px)}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px}
+.step-dot{
+  width:56px;height:56px;background:var(--bg-soft);border:1px solid var(--border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:18px;position:relative;z-index:1;
+  transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s;
+}
+.step:hover .step-dot{
+  background:var(--blue-lt);border-color:var(--blue);
+  transform:translateY(-5px);box-shadow:0 8px 20px rgba(1,118,211,.2);
+}
+.step-num-badge{
+  position:absolute;top:-5px;right:-5px;width:18px;height:18px;
+  background:var(--blue);color:#fff;border-radius:50%;
+  font-size:.6rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+}
+.step-title{font-size:.88rem;font-weight:600;margin-bottom:8px}
+.step-text{font-size:.78rem;font-weight:300;color:var(--text-soft);line-height:1.7}
+
+/* ─────────────────────────────────────────
+   IMPACT
+───────────────────────────────────────── */
+.impact{padding:100px 64px;background:var(--bg-soft)}
+.impact-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ic{
+  background:#fff;border:1px solid var(--border);border-radius:12px;padding:32px;
+  transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s;
+}
+.ic:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-4px);border-color:var(--blue-md)}
+.ic.span2{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.ic-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:500;margin-bottom:10px}
+.ic-org{font-family:var(--lora);font-size:1.3rem;font-weight:500;margin-bottom:10px}
+.ic-text{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7;margin-bottom:22px}
+.ic-nums{display:flex;gap:24px}
+.ic-num-val{
+  font-family:var(--lora);font-size:2rem;font-weight:500;
+  color:var(--text);line-height:1;margin-bottom:3px;
+}
+.ic-num-val b{color:var(--blue);font-weight:500}
+.ic-num-label{font-size:.68rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.05em}
+.ic-quote{background:var(--bg-soft);border-radius:10px;padding:28px}
+.ic-quote-text{font-family:var(--lora);font-style:italic;font-size:.95rem;line-height:1.7;color:var(--text-mid);margin-bottom:14px}
+.ic-quote-author{font-size:.78rem;font-weight:500;color:var(--text)}
+.ic-quote-role{font-size:.72rem;color:var(--text-soft);margin-top:2px}
+
+/* ─────────────────────────────────────────
+   FAQ
+───────────────────────────────────────── */
+.faq{padding:100px 64px;background:var(--bg-soft)}
+.faq-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  text-align:left;padding:20px 0;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:var(--sora);font-size:.88rem;font-weight:500;color:var(--text);
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--blue)}
+.faq-chevron{
+  width:20px;height:20px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;
+  transition:background .25s,border-color .25s,transform .3s var(--ease);
+}
+.faq-item.open .faq-chevron{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(45deg)}
+.faq-a{
+  font-size:.84rem;font-weight:300;color:var(--text-soft);line-height:1.78;
+  max-height:0;overflow:hidden;padding-bottom:0;
+  transition:max-height .4s var(--ease),padding-bottom .3s;
+}
+.faq-item.open .faq-a{max-height:250px;padding-bottom:20px}
+
+/* ─────────────────────────────────────────
+   CTA
+───────────────────────────────────────── */
+.cta-section{padding:100px 64px;background:var(--blue);position:relative;overflow:hidden}
+/* Mouse-following glow — updated via JS */
+.cta-section::before{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 70%);
+  transform:translate(var(--cx,-50%), var(--cy,-50%)) translate(-50%,-50%);
+  transition:transform .15s linear;
+}
+.cta-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:rgba(255,255,255,.04);
+}
+.cta-orb-1{width:400px;height:400px;top:-100px;right:-100px}
+.cta-orb-2{width:280px;height:280px;bottom:-80px;left:-80px}
+.cta-inner{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.cta-h2{
+  font-family:var(--lora);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;
+  line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:18px;
+}
+.cta-p{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.8);line-height:1.75;margin-bottom:40px}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:#fff;color:var(--blue);padding:13px 28px;border-radius:7px;
+  font-size:.88rem;font-weight:600;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-white:hover{background:var(--blue-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-outline-white{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);
+  padding:13px 28px;border-radius:7px;font-size:.88rem;font-weight:400;
+  text-decoration:none;transition:border-color .2s,transform .15s,background .2s;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.cta-note{margin-top:18px;font-size:.74rem;color:rgba(255,255,255,.5)}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(--bg)}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;
+  max-width:1200px;margin:0 auto 44px;
+  padding-bottom:44px;border-bottom:1px solid var(--border);
+}
+.footer-brand-p{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75;margin-top:12px;max-width:260px}
+.footer-family{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.fam-tag{
+  background:var(--bg-soft);border:1px solid var(--border);border-radius:5px;
+  padding:5px 11px;font-size:.7rem;color:var(--text-soft);text-decoration:none;
+  transition:border-color .2s,color .2s,transform .15s;
+}
+.fam-tag:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.footer-col-h{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-size:.82rem;font-weight:300;color:var(--text-soft);text-decoration:none;transition:color .2s,padding-left .2s}
+.footer-links a:hover{color:var(--blue);padding-left:4px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.footer-copy{font-size:.75rem;color:#BBB}
+.footer-copy a{color:var(--blue);text-decoration:none}
+.socials{display:flex;gap:10px}
+.soc{
+  width:32px;height:32px;border:1px solid var(--border);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-soft);text-decoration:none;font-size:.75rem;
+  transition:border-color .2s,color .2s,transform .2s;
+}
+.soc:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+
+/* ─────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Salesforce-style cloud: bumpy top, flat-ish bottom -->
+  <path d="M25.5 13.5c0-.17-.01-.34-.02-.5A5 5 0 0 0 21 8a5 5 0 0 0-2.5.67A6 6 0 0 0 7.2 12.1 4.5 4.5 0 0 0 8 21h17a4.5 4.5 0 0 0 .5-8.5z" fill="white"/>
+  <!-- Heart inside the cloud -->
+  <path d="M16 18.2l-4.1-4.1a2.3 2.3 0 0 1 3.25-3.25L16 11.7l.85-.85a2.3 2.3 0 0 1 3.25 3.25L16 18.2z" fill="#0176D3"/>
+</svg>
+    </div>
+    <span class="nav-logo-name">Nonprofit <span>Cloud Experts</span></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#services" data-section="services">Services</a></li>
+    <li><a href="#why" data-section="why">Why Us</a></li>
+    <li><a href="#impact" data-section="impact">Impact</a></li>
+    <li><a href="#faq" data-section="faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn" id="nav-cta">Free Assessment</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-orb hero-orb-1" id="orb1"></div>
+  <div class="hero-orb hero-orb-2" id="orb2"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-left">
+      <div class="hero-tag"><div class="hero-tag-dot"></div>Salesforce for Nonprofits &amp; Charities</div>
+      <h1 class="hero-h1" id="hero-h1">
+        <!-- words injected by JS for stagger -->
+        Salesforce solutions built for <em>missions</em> that matter
+      </h1>
+      <p class="hero-p">We bring full-service Salesforce consulting, implementation, and support to nonprofits and charities — at pricing that reflects your purpose.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-blue">
+          Get Free Assessment
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#impact" class="btn-ghost">
+          See Our Work
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item"><div class="proof-num" data-count="40" data-suffix="+">0+</div><div class="proof-label">Nonprofits Served</div></div>
+        <div class="proof-item"><div class="proof-num" data-count="5" data-suffix="★">0★</div><div class="proof-label">Client Satisfaction</div></div>
+        <div class="proof-item"><div class="proof-num" data-count="30" data-suffix="%">0%</div><div class="proof-label">Avg. Cost Reduction</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="dash-card" id="dash-card">
+        <div class="dash-float-tag">✦ NPSP Certified</div>
+        <div class="dash-header">
+          <div class="dash-title">Hope Foundation — Donor CRM</div>
+          <div class="dash-badge">Live</div>
+        </div>
+        <div class="dash-kpis">
+          <div class="kpi"><div class="kpi-val">2.4<span>k</span></div><div class="kpi-label">Active Donors</div></div>
+          <div class="kpi"><div class="kpi-val">৳18<span>M</span></div><div class="kpi-label">Funds Tracked</div></div>
+          <div class="kpi"><div class="kpi-val">94<span>%</span></div><div class="kpi-label">Retention Rate</div></div>
+        </div>
+        <div class="dash-progress-wrap">
+          <div class="dash-progress-head"><strong>Annual Fundraising Goal</strong><span>73% reached</span></div>
+          <div class="dash-bar"><div class="dash-bar-fill"></div></div>
+        </div>
+        <div class="dash-donors">
+          <div class="donor-avatars">
+            <div class="donor-av">AK</div><div class="donor-av">RH</div>
+            <div class="donor-av">NI</div><div class="donor-av">+</div>
+          </div>
+          <div class="donor-text"><strong>12 new donors</strong> this week</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="services-head reveal">
+      <div>
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-h2">Everything your nonprofit<br>needs on <em>Salesforce</em></h2>
+      </div>
+      <p class="section-p">From initial setup to ongoing support, we manage the full Salesforce journey so your team can stay focused on the work that actually matters.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal d1" data-tilt><div class="svc-icon">🌱</div><div class="svc-name">NPSP Implementation</div><p class="svc-desc">Full Nonprofit Success Pack setup — donor management, households, affiliations, and gift processing built around your workflow.</p></div>
+      <div class="svc reveal d2" data-tilt><div class="svc-icon">💰</div><div class="svc-name">Donor &amp; Fundraising CRM</div><p class="svc-desc">Track every donor relationship, automate stewardship emails, and run data-driven fundraising campaigns at scale.</p></div>
+      <div class="svc reveal d3" data-tilt><div class="svc-icon">🔗</div><div class="svc-name">Integrations</div><p class="svc-desc">Connect Salesforce to payment platforms, email tools, grant portals, and accounting systems via MuleSoft and REST APIs.</p></div>
+      <div class="svc reveal d1" data-tilt><div class="svc-icon">📊</div><div class="svc-name">Impact Dashboards</div><p class="svc-desc">Custom reports and live dashboards that visualize program outcomes and funding status — board-ready, always up to date.</p></div>
+      <div class="svc reveal d2" data-tilt><div class="svc-icon">🤝</div><div class="svc-name">Volunteer Management</div><p class="svc-desc">Recruit, schedule, and track volunteers all inside Salesforce. No separate tool, no data silos.</p></div>
+      <div class="svc reveal d3" data-tilt><div class="svc-icon">🎓</div><div class="svc-name">Training &amp; Support</div><p class="svc-desc">Hands-on team training and ongoing support to ensure full adoption and confidence across your entire staff.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-layout">
+      <div class="reveal">
+        <div class="section-tag">Why Choose Us</div>
+        <h2 class="section-h2">Built for the<br>nonprofit <em>sector</em></h2>
+        <div class="pillars">
+          <div class="pillar"><div class="pillar-n">01</div><div class="pillar-body"><div class="pillar-title">Mission-Aligned Pricing</div><p class="pillar-text">Nonprofit-specific tiers, free assessments, and flexible plans designed around charity budgets — not corporate ones.</p></div></div>
+          <div class="pillar"><div class="pillar-n">02</div><div class="pillar-body"><div class="pillar-title">Certified Salesforce Partner</div><p class="pillar-text">Our team of 20+ certified Salesforce professionals has delivered successful implementations across 5+ countries.</p></div></div>
+          <div class="pillar"><div class="pillar-n">03</div><div class="pillar-body"><div class="pillar-title">NPSP Specialists</div><p class="pillar-text">We don't retrofit B2B solutions. Our practice is built from the ground up using Salesforce NPSP and Nonprofit Cloud.</p></div></div>
+          <div class="pillar"><div class="pillar-n">04</div><div class="pillar-body"><div class="pillar-title">Long-Term Partnership</div><p class="pillar-text">We stay post-launch. From training to quarterly reviews, our team grows alongside your organization.</p></div></div>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="why-quote-block">
+          <p class="why-quote-text">"We exist because nonprofits deserve the same enterprise-grade technology as Fortune 500 companies — without the Fortune 500 price tag."</p>
+          <div class="why-quote-by"><strong>Saiful Islam</strong> — Founder, Nonprofit Cloud Experts</div>
+        </div>
+        <div class="badges">
+          <span class="badge">Salesforce Consulting Partner</span>
+          <span class="badge">NPSP Certified</span>
+          
+          
+          <span class="badge">10% Pro-Bono Policy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="process-head reveal">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-h2">From discovery<br>to <em>going live</em></h2>
+      <p class="section-p" style="margin-top:12px">A clear four-step process that gets your Salesforce running without disrupting day-to-day operations.</p>
+    </div>
+    <div class="steps" id="steps">
+      <div class="step reveal d1"><div class="step-dot">🔍<div class="step-num-badge">1</div></div><div class="step-title">Free Assessment</div><p class="step-text">We audit your tools, data, and processes — then map a Salesforce strategy tailored to your organization at zero cost.</p></div>
+      <div class="step reveal d2"><div class="step-dot">🗺️<div class="step-num-badge">2</div></div><div class="step-title">Solution Design</div><p class="step-text">Our architects design your environment — data model, flows, integrations, and user roles built around your mission.</p></div>
+      <div class="step reveal d3"><div class="step-dot">⚙️<div class="step-num-badge">3</div></div><div class="step-title">Build &amp; Configure</div><p class="step-text">We build using Apex, LWC, Flow, and NPSP with agile sprints and continuous feedback keeping you in control.</p></div>
+      <div class="step reveal d4"><div class="step-dot">🚀<div class="step-num-badge">4</div></div><div class="step-title">Launch &amp; Grow</div><p class="step-text">Training, go-live support, and an ongoing partnership ensuring adoption and continuous improvement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="wrap">
+    <div class="impact-head">
+      <div class="reveal"><div class="section-tag">Real Impact</div><h2 class="section-h2">Stories of<br><em>transformation</em></h2></div>
+      <p class="section-p reveal d2">Every implementation is a chance to multiply the good your organization does. Here's what that looks like in practice.</p>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="ic span2">
+        <div>
+          <div class="ic-tag">Featured · Healthcare NGO</div>
+          <div class="ic-org">Victory Disability Services</div>
+          <p class="ic-text">A disability support charity managing 1,200 beneficiaries struggled with spreadsheet chaos and missed follow-ups. Our team implemented a full NPSP environment with volunteer coordination and impact reporting.</p>
+          <div class="ic-nums">
+            <div><div class="ic-num-val counter" data-target="3" data-suffix="×">0×</div><div class="ic-num-label">Faster Reporting</div></div>
+            <div><div class="ic-num-val counter" data-target="68" data-suffix="%">0%</div><div class="ic-num-label">Admin Time Saved</div></div>
+            <div><div class="ic-num-val counter" data-target="1.2" data-suffix="k" data-decimal="1">0k</div><div class="ic-num-label">Beneficiaries Tracked</div></div>
+          </div>
+        </div>
+        <div class="ic-quote">
+          <p class="ic-quote-text">"They didn't just implement Salesforce — they understood our mission. Now our team spends less time on data entry and more time helping people who need us."</p>
+          <div class="ic-quote-author">Sarah Mitchell</div>
+          <div class="ic-quote-role">Operations Director, Victory Disability</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">Education · Bangladesh</div>
+        <div class="ic-org">EduReach Foundation</div>
+        <p class="ic-text">Donor retention improved from 42% to 79% after deploying automated stewardship journeys and a self-service donor portal on Experience Cloud.</p>
+        <div class="ic-nums" style="margin-top:20px">
+          <div><div class="ic-num-val counter" data-target="79" data-suffix="%">0%</div><div class="ic-num-label">Donor Retention</div></div>
+          <div><div class="ic-num-val counter" data-target="2.1" data-suffix="×" data-decimal="1">0×</div><div class="ic-num-label">Gift Frequency</div></div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">Environment · South Asia</div>
+        <div class="ic-org">GreenEarth Initiative</div>
+        <p class="ic-text">Volunteer program scaled from 200 to 900 active members in 6 months after deploying Salesforce Volunteer Management with mobile check-in.</p>
+        <div class="ic-nums" style="margin-top:20px">
+          <div><div class="ic-num-val counter" data-target="900" data-suffix="+">0+</div><div class="ic-num-label">Active Volunteers</div></div>
+          <div><div class="ic-num-val counter" data-target="4.5" data-suffix="×" data-decimal="1">0×</div><div class="ic-num-label">Growth in 6 Months</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="reveal">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-h2">Common<br><em>questions</em></h2>
+        <p class="section-p" style="margin-top:14px;font-size:.85rem">Still have questions?<br><a href="#contact" style="color:var(--blue);text-decoration:none;font-weight:500">Contact us →</a></p>
+      </div>
+      <div class="faq-list reveal d2">
+        <div class="faq-item open">
+          <button class="faq-q" onclick="toggleFaq(this)">Do we need to already have Salesforce?<span class="faq-chevron">+</span></button>
+          <div class="faq-a">No — we handle everything from scratch, including helping you apply for Salesforce's Power of Us program which gives eligible nonprofits 10 free licenses. If you already have Salesforce, we can audit and improve your existing setup.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the Salesforce Power of Us program?<span class="faq-chevron">+</span></button>
+          <div class="faq-a">Salesforce.org's Power of Us program provides registered nonprofits with 10 free Salesforce licenses and deep discounts on additional licenses. We help eligible organizations apply and qualify, significantly reducing your technology costs.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does implementation take?<span class="faq-chevron">+</span></button>
+          <div class="faq-a">A basic setup takes 3–4 weeks. A full growth implementation runs 6–10 weeks. Enterprise engagements are scoped individually but typically 10–20 weeks. All timelines include data migration, configuration, testing, and training.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can you migrate data from Excel, HubSpot, or other CRMs?<span class="faq-chevron">+</span></button>
+          <div class="faq-a">Yes. We handle migration from spreadsheets, legacy CRMs (HubSpot, Zoho, NationBuilder), and custom databases. Our process covers audit, field mapping, cleansing, and validated import with zero data loss.</div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you offer ongoing support after launch?<span class="faq-chevron">+</span></button>
+          <div class="faq-a">Yes. All engagements include post-launch support. We also offer flexible monthly retainers for ongoing development, admin support, or training as your needs evolve.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="cta-inner reveal">
+    <h2 class="cta-h2">Ready to power your mission<br>with Salesforce?</h2>
+    <p class="cta-p">Book a free, no-obligation assessment. We'll review your setup, understand your goals, and give you a clear roadmap — at zero cost.</p>
+    <div class="cta-actions">
+      <a href="mailto:saiful@twinstack.net" class="btn-white">
+        Book Free Assessment
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://wa.me/8801556777043" class="btn-outline-white" target="_blank" rel="noopener">
+        WhatsApp Us
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="cta-note">Free assessment · No commitment · Response within 24 hours</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="nav-logo" style="text-decoration:none">
+        <div class="nav-logo-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Salesforce-style cloud: bumpy top, flat-ish bottom -->
+  <path d="M25.5 13.5c0-.17-.01-.34-.02-.5A5 5 0 0 0 21 8a5 5 0 0 0-2.5.67A6 6 0 0 0 7.2 12.1 4.5 4.5 0 0 0 8 21h17a4.5 4.5 0 0 0 .5-8.5z" fill="white"/>
+  <!-- Heart inside the cloud -->
+  <path d="M16 18.2l-4.1-4.1a2.3 2.3 0 0 1 3.25-3.25L16 11.7l.85-.85a2.3 2.3 0 0 1 3.25 3.25L16 18.2z" fill="#0176D3"/>
+</svg></div>
+        <span class="nav-logo-name">Nonprofit <span>Cloud Experts</span></span>
+      </a>
+      <p class="footer-brand-p">Nonprofit Cloud & Salesforce experts for charities and NGOs. Certified Salesforce Consulting Partner since 2022.</p>
+      
+    </div>
+    <div>
+      <div class="footer-col-h">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">NPSP Implementation</a></li><li><a href="#services">Donor CRM</a></li>
+        <li><a href="#services">Volunteer Management</a></li><li><a href="#services">Integrations</a></li>
+        <li><a href="#services">Impact Dashboards</a></li><li><a href="#services">Training</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Company</div>
+      <ul class="footer-links">
+        <li><a href="#why">About Us</a></li><li><a href="#impact">Case Studies</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:saiful@twinstack.net">saiful@twinstack.net</a></li>
+        <li><a href="https://wa.me/8801556777043">WhatsApp</a></li>
+        
+        <li><a href="#">Mirpur-12, Dhaka</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Nonprofit Cloud Experts. All rights reserved.</p>
+    <div class="socials">
+      <a href="#" class="soc">f</a>
+      <a href="#" class="soc">in</a>
+      <a href="#" class="soc">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── All JS deferred — runs after parse ── */
+(function(){
+  'use strict';
+
+  /* ── 1. SCROLL PROGRESS BAR ── */
+  const bar = document.getElementById('progress-bar');
+  function updateBar(){
+    const s = document.documentElement;
+    const pct = (s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+    bar.style.width = pct+'%';
+  }
+
+  /* ── 2. NAV SCROLL + ACTIVE SECTION ── */
+  const nav = document.getElementById('nav');
+  const sections = ['services','why','impact','faq','contact'];
+  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+  function updateNav(){
+    nav.classList.toggle('scrolled', scrollY > 40);
+    // Active link
+    let current = '';
+    sections.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top <= 100) current = id;
+    });
+    navLinks.forEach(a=>{
+      a.classList.toggle('active', a.dataset.section === current);
+    });
+  }
+
+  /* ── 3. HERO MOUSE PARALLAX + SPOTLIGHT ── */
+  const hero = document.getElementById('hero');
+  const orb1 = document.getElementById('orb1');
+  const orb2 = document.getElementById('orb2');
+  const dashCard = document.getElementById('dash-card');
+  let heroRect, rafPending = false;
+  function onHeroMove(e){
+    if(!heroRect) heroRect = hero.getBoundingClientRect();
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(()=>{
+      rafPending = false;
+      const x = e.clientX - heroRect.left;
+      const y = e.clientY - heroRect.top;
+      const cx = heroRect.width/2, cy = heroRect.height/2;
+      const dx = (x-cx)/cx, dy = (y-cy)/cy;
+      // Spotlight
+      hero.style.setProperty('--mx', (x/heroRect.width*100)+'%');
+      hero.style.setProperty('--my', (y/heroRect.height*100)+'%');
+      // Orbs parallax
+      orb1.style.transform = `translate(${dx*-18}px,${dy*-12}px)`;
+      orb2.style.transform = `translate(${dx*12}px,${dy*8}px)`;
+      // Card 3D tilt
+      const tiltX = dy * 6, tiltY = dx * -6;
+      dashCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(8px)`;
+    });
+  }
+  function onHeroLeave(){
+    dashCard.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+    orb1.style.transform = 'translate(0,0)';
+    orb2.style.transform = 'translate(0,0)';
+  }
+  hero.addEventListener('mousemove', onHeroMove, {passive:true});
+  hero.addEventListener('mouseleave', onHeroLeave);
+
+  /* ── 4. SERVICE CARD 3D TILT ── */
+  document.querySelectorAll('[data-tilt]').forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX-r.left)/r.width - .5;
+      const y = (e.clientY-r.top)/r.height - .5;
+      card.style.transform = `perspective(600px) rotateX(${y*-7}deg) rotateY(${x*7}deg) translateZ(4px)`;
+    },{passive:true});
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateZ(0)';
+    });
+  });
+
+  /* ── 5. MAGNETIC BUTTONS ── */
+  document.querySelectorAll('.btn-blue,.btn-white,.nav-btn').forEach(btn=>{
+    btn.addEventListener('mousemove', e=>{
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2;
+      const y = e.clientY - r.top - r.height/2;
+      btn.style.transform = `translate(${x*.18}px,${y*.18}px)`;
+    },{passive:true});
+    btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+  });
+
+  /* ── 6. CTA MOUSE GLOW ── */
+  const cta = document.querySelector('.cta-section');
+  cta.addEventListener('mousemove', e=>{
+    const r = cta.getBoundingClientRect();
+    cta.style.setProperty('--cx', (e.clientX-r.left)+'px');
+    cta.style.setProperty('--cy', (e.clientY-r.top)+'px');
+  },{passive:true});
+
+  /* ── 7. SCROLL REVEAL ── */
+  const revealObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('on'); revealObs.unobserve(e.target); }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  /* ── 8. PROCESS LINE ANIMATION ── */
+  const stepsEl = document.getElementById('steps');
+  const stepsObs = new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){ stepsEl.classList.add('on'); stepsObs.disconnect(); }
+  },{threshold:.3});
+  stepsObs.observe(stepsEl);
+
+  /* ── 9. COUNTER ANIMATION ── */
+  function animateCount(el){
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix||'';
+    const dec = parseInt(el.dataset.decimal||0);
+    const dur = 1400, start = performance.now();
+    function step(now){
+      const p = Math.min((now-start)/dur,1);
+      const ease = 1-Math.pow(1-p,3); // ease-out-cubic
+      const val = target*ease;
+      el.textContent = (dec ? val.toFixed(dec) : Math.floor(val)) + suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.counter,[data-count]').forEach(el=>{
+          if(el.dataset.count) el.dataset.target=el.dataset.count;
+          if(el.dataset.suffix) animateCount(el);
+        });
+        // hero proof counters
+        document.querySelectorAll('.proof-num[data-count]').forEach(el=>{
+          el.dataset.target = el.dataset.count;
+          animateCount(el);
+        });
+        counterObs.disconnect();
+      }
+    });
+  },{threshold:.4});
+  const impactSection = document.getElementById('impact');
+  if(impactSection) counterObs.observe(impactSection);
+
+  // Hero proof counters — fire after hero animations complete
+  setTimeout(()=>{
+    document.querySelectorAll('.proof-num[data-count]').forEach(animateCount);
+  }, 900);
+
+  /* ── 10. WORD-BY-WORD H1 REVEAL ── */
+  const h1 = document.getElementById('hero-h1');
+  if(h1){
+    const html = h1.innerHTML;
+    // Split text nodes only, preserve <em> intact
+    const frag = document.createDocumentFragment();
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    let delay = 0.15;
+    tmp.childNodes.forEach(node=>{
+      if(node.nodeType===3){ // text
+        node.textContent.split(/(\s+)/).forEach(part=>{
+          if(part.trim()){
+            const span = document.createElement('span');
+            span.className='word';
+            span.style.animationDelay = delay+'s';
+            span.textContent = part;
+            frag.appendChild(span);
+            frag.appendChild(document.createTextNode(' '));
+            delay += 0.07;
+          }
+        });
+      } else {
+        // <em> or other element — wrap as one word
+        const span = document.createElement('span');
+        span.className='word';
+        span.style.animationDelay = delay+'s';
+        span.appendChild(node.cloneNode(true));
+        frag.appendChild(span);
+        frag.appendChild(document.createTextNode(' '));
+        delay += 0.07;
+      }
+    });
+    h1.innerHTML='';
+    h1.appendChild(frag);
+  }
+
+  /* ── 11. PASSIVE SCROLL LISTENER (batched) ── */
+  let scrollRaf = false;
+  window.addEventListener('scroll',()=>{
+    if(scrollRaf) return;
+    scrollRaf = true;
+    requestAnimationFrame(()=>{
+      updateBar();
+      updateNav();
+      scrollRaf = false;
+    });
+  },{passive:true});
+
+  /* ── 12. FAQ ── */
+  window.toggleFaq = function(btn){
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-chevron').textContent='+';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      btn.querySelector('.faq-chevron').textContent='+';
+    }
+  };
+
+  /* Init */
+  updateBar();
+  updateNav();
+})();
+</script>
+</body>
+</html>
