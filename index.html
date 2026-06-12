@@ -48,22 +48,29 @@ img{display:block;max-width:100%}
 #progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--blue);z-index:200;will-change:width}
 
 /* ───────── NAV ───────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(20px,5vw,64px);height:72px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s var(--ease)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(16px,4vw,64px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:box-shadow .3s var(--ease)}
 nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:170px}
-.nav-logo img{height:48px;width:auto}
-.nav-logo-name{font-size:.86rem;font-weight:600;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;min-width:0}
+.nav-logo img{height:40px;width:auto;flex-shrink:0}
+.nav-logo-name{font-size:.84rem;font-weight:600;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
 .nav-logo-name span{color:var(--blue)}
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:.83rem;color:var(--text-mid);text-decoration:none;position:relative;padding-bottom:2px;transition:color .2s}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+.nav-links a{font-size:.82rem;color:var(--text-mid);text-decoration:none;position:relative;padding-bottom:2px;transition:color .2s}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--blue);transition:width .25s var(--ease)}
 .nav-links a:hover{color:var(--blue)}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 .nav-links a.active{color:var(--blue)}
-.nav-btn{background:var(--blue);color:#fff;padding:9px 20px;border-radius:6px;font-size:.83rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;white-space:nowrap}
+.nav-btn{background:var(--blue);color:#fff;padding:9px 18px;border-radius:6px;font-size:.82rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;white-space:nowrap;flex-shrink:0}
 .nav-btn:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 4px 16px rgba(1,118,211,.3)}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--text)}
-.nav-toggle svg{width:24px;height:24px}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--text);flex-shrink:0}
+.nav-toggle svg{width:22px;height:22px}
+/* Hide nav-btn and links at tablet/mobile — hamburger takes over */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-btn{display:none}
+  .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:20px clamp(16px,5vw,40px);gap:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);z-index:99}
+}
 
 /* ───────── HERO ───────── */
 .hero{min-height:100vh;padding:132px clamp(20px,5vw,64px) 70px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
@@ -104,15 +111,15 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
 .dash-title{font-size:.82rem;font-weight:600}
-.dash-sub{font-size:.64rem;color:var(--text-soft);margin-bottom:14px}
-.dash-badge{background:var(--green-lt);color:var(--green);font-size:.64rem;font-weight:500;padding:3px 9px;border-radius:100px;display:flex;align-items:center;gap:5px}
+.dash-sub{font-size:.72rem;color:var(--text-soft);margin-bottom:14px}
+.dash-badge{background:var(--green-lt);color:var(--green);font-size:.72rem;font-weight:500;padding:3px 9px;border-radius:100px;display:flex;align-items:center;gap:5px}
 .dash-badge::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s ease infinite}
 .dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .kpi{background:var(--bg-soft);border-radius:9px;padding:10px}
 .kpi-val{font-family:var(--lora);font-size:1.15rem;font-weight:500;color:var(--text);margin-bottom:2px}
 .kpi-val span{color:var(--blue)}
-.kpi-label{font-size:.58rem;color:var(--text-soft)}
-.dash-progress-head{display:flex;justify-content:space-between;font-size:.66rem;color:var(--text-soft);margin-bottom:7px}
+.kpi-label{font-size:.72rem;color:var(--text-soft)}
+.dash-progress-head{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-soft);margin-bottom:7px}
 .dash-progress-head strong{color:var(--text);font-weight:500}
 .dash-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
 .dash-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),#5BC0EB);border-radius:3px;width:0;animation:barFill 1.4s 1s var(--ease) forwards}
@@ -124,7 +131,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 /* ───────── TRUST STRIP ───────── */
 .trust{padding:30px clamp(20px,5vw,64px);border-bottom:1px solid var(--border);background:var(--bg-soft)}
 .trust-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.trust-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#595959;white-space:nowrap}
+.trust-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:#595959;white-space:nowrap}
 .trust-items{display:flex;gap:14px;flex-wrap:wrap}
 .trust-pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:.76rem;color:var(--text-mid);transition:border-color .2s,color .2s,transform .15s}
 .trust-pill:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
@@ -202,7 +209,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .step-dot{width:56px;height:56px;background:#fff;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;z-index:1;transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s}
 .step-dot svg{width:24px;height:24px;color:var(--blue)}
 .step:hover .step-dot{background:var(--blue-lt);border-color:var(--blue);transform:translateY(-5px);box-shadow:0 8px 20px rgba(1,118,211,.2)}
-.step-num-badge{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--blue);color:#fff;border-radius:50%;font-size:.6rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.step-num-badge{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--blue);color:#fff;border-radius:50%;font-size:.68rem;font-weight:600;display:flex;align-items:center;justify-content:center}
 .step-title{font-size:.88rem;font-weight:600;margin-bottom:8px}
 .step-text{font-size:.78rem;font-weight:300;color:var(--text-soft);line-height:1.7}
 
@@ -222,7 +229,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .work-card.feature .work-text{font-size:.9rem;margin-bottom:24px}
 .work-nums{display:flex;gap:30px}
 .work-num-val{font-family:var(--lora);font-size:1.6rem;font-weight:500;color:var(--blue);line-height:1;margin-bottom:4px}
-.work-num-label{font-size:.66rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.04em}
+.work-num-label{font-size:.74rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.04em}
 .feature-aside{background:var(--bg-soft);border-radius:12px;padding:28px}
 .feature-aside h3.feature-aside-h{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);margin-bottom:16px;font-weight:500}
 .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
@@ -266,14 +273,14 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .contact-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:100px;font-size:.72rem;font-weight:500;letter-spacing:.03em;margin-bottom:20px}
 .contact-h2{font-family:var(--lora);font-size:clamp(1.9rem,3vw,2.6rem);font-weight:500;line-height:1.2;color:#fff;margin-bottom:16px}
 .contact-h2 em{font-style:italic}
-.contact-p{font-size:.94rem;font-weight:300;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:30px;max-width:420px}
+.contact-p{font-size:.94rem;font-weight:300;color:rgba(255,255,255,.92);line-height:1.75;margin-bottom:30px;max-width:420px}
 .contact-methods{display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
 .cmethod{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none;padding:14px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:11px;transition:background .2s,transform .15s,border-color .2s}
 .cmethod:hover{background:rgba(255,255,255,.15);transform:translateX(4px);border-color:rgba(255,255,255,.3)}
 .cmethod-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .cmethod-icon svg{width:19px;height:19px;color:#fff}
 .cmethod-val{font-size:.92rem;font-weight:500}
-.contact-meta{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.7}
+.contact-meta{font-size:.78rem;color:rgba(255,255,255,.88);line-height:1.7}
 .contact-meta strong{color:#fff;font-weight:500}
 /* form card */
 .contact-card{background:#fff;border-radius:18px;padding:clamp(26px,3vw,38px);box-shadow:0 20px 60px rgba(0,0,0,.22)}
@@ -293,23 +300,35 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .form-note{font-size:.72rem;color:var(--text-soft);text-align:center;margin-top:14px;line-height:1.6}
 
 /* ───────── FOOTER ───────── */
-footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border);background:var(--bg)}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
-.footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+footer{padding:56px clamp(20px,5vw,64px) 32px;border-top:1px solid var(--border);background:var(--bg)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 36px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+.footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:14px}
 .footer-logo img{height:32px;width:auto}
 .footer-logo-name{font-size:.86rem;font-weight:600;color:var(--text)}
 .footer-logo-name span{color:var(--blue)}
-.footer-brand-p{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75;margin-top:14px;max-width:280px}
-.footer-col-h{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft);margin-bottom:16px}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
-.footer-links a{font-size:.82rem;font-weight:300;color:var(--text-soft);text-decoration:none;transition:color .2s,padding-left .2s}
-.footer-links a:hover{color:var(--blue);padding-left:4px}
+.footer-brand-p{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75;max-width:280px}
+.footer-col-h{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft);margin-bottom:14px;font-weight:500}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.84rem;font-weight:400;color:var(--text-mid);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--blue)}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;gap:16px;flex-wrap:wrap}
 .footer-copy{font-size:.75rem;color:#595959}
 .socials{display:flex;gap:10px}
 .soc{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
 .soc svg{width:16px;height:16px}
 .soc:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+/* tablet: 2 columns */
+@media(max-width:860px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:36px}
+  .footer-brand{grid-column:1/-1}
+}
+/* phone: brand full width, then 2-col row for Company + Contact */
+@media(max-width:540px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px 20px;margin-bottom:28px;padding-bottom:28px}
+  .footer-brand{grid-column:1/-1;padding-bottom:4px}
+  .footer-brand-p{max-width:100%}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:14px}
+}
 
 /* ───────── RESPONSIVE ───────── */
 @media(max-width:980px){
@@ -325,9 +344,6 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
   .faq-layout{grid-template-columns:1fr;gap:32px}
 }
 @media(max-width:640px){
-  .nav-links{display:none}
-  .nav-toggle{display:block}
-  .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:18px clamp(20px,5vw,64px);gap:18px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
   .hero-proof{flex-wrap:wrap;gap:24px}
   .services-grid,.work-grid,.testi-grid,.steps{grid-template-columns:1fr}
   .work-card.feature{grid-column:span 1}
@@ -364,6 +380,7 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
     <li><a href="#impact" data-section="impact">Work</a></li>
     <li><a href="#faq" data-section="faq">FAQ</a></li>
     <li><a href="#contact" data-section="contact">Contact</a></li>
+    <li><a href="https://calendar.app.google/HP3LiuNFisCt6xLo6" target="_blank" rel="noopener" style="color:var(--blue);font-weight:500">Book a Call ↗</a></li>
   </ul>
   <a href="https://calendar.app.google/HP3LiuNFisCt6xLo6" class="nav-btn" target="_blank" rel="noopener">Book a Call</a>
   <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -711,7 +728,7 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
         <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000roILE" method="POST">
           <input type="hidden" name="oid" value="00DdN00000roILE">
           <input type="hidden" name="retURL" value="https://www.twinstack.net/">
-          <input type="hidden" name="lead_source" value="NPC_US">
+          <input type="hidden" name="lead_source" value="npc_contact">
           <div class="field-row">
             <div class="field">
               <label for="first_name">First name <span class="req">*</span></label>
@@ -759,30 +776,22 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div>
+    <div class="footer-brand">
       <a href="#hero" class="footer-logo">
         <img src="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_140/v1781260912/Untitled_design_4_so832c.png" alt="TwinStack Solutions logo" width="34" height="32" loading="lazy" decoding="async">
         <span class="footer-logo-name">Nonprofit <span>Cloud Experts</span></span>
       </a>
       <p class="footer-brand-p">A division of TwinStack Solutions — empowering charities and businesses with Salesforce excellence since 2018. Based in Dhaka, Bangladesh; serving clients worldwide.</p>
     </div>
-    <div>
-      <div class="footer-col-h">Services</div>
-      <ul class="footer-links">
-        <li><a href="#services">NPSP Implementation</a></li><li><a href="#services">Donor CRM</a></li>
-        <li><a href="#services">Volunteer Management</a></li><li><a href="#services">Integrations</a></li>
-        <li><a href="#services">Impact Dashboards</a></li><li><a href="#services">Training</a></li>
-      </ul>
-    </div>
-    <div>
+    <div class="footer-col">
       <div class="footer-col-h">Company</div>
       <ul class="footer-links">
-        <li><a href="#why">Why Us</a></li><li><a href="#founder">Our Architect</a></li>
-        <li><a href="#impact">Selected Work</a></li><li><a href="#faq">FAQ</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#founder">Our Architect</a></li>
         <li><a href="https://www.twinstack.net/" target="_blank" rel="noopener">TwinStack.net</a></li>
       </ul>
     </div>
-    <div>
+    <div class="footer-col">
       <div class="footer-col-h">Contact</div>
       <ul class="footer-links">
         <li><a href="mailto:saiful@twinstack.net">saiful@twinstack.net</a></li>
