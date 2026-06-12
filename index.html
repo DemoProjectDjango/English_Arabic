@@ -2,539 +2,369 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nonprofit Cloud Salesforce Experts | NPSP Implementation for Charities</title>
-<meta name="description" content="Your dedicated Nonprofit Cloud & Salesforce experts — NPSP implementation, donor CRM, and full-service Salesforce consulting for nonprofits and charities.">
+<title>Nonprofit Cloud Salesforce Experts | NPSP Implementation by TwinStack</title>
+<meta name="description" content="TwinStack Solutions builds Salesforce for nonprofits and charities — Nonprofit Cloud and NPSP implementation, donor CRM, and Power of Us setup. 12+ years, 30+ certified specialists. Book a free assessment.">
+<meta name="theme-color" content="#0176D3">
+<link rel="canonical" href="https://www.twinstack.net/">
 
-<!-- Preconnect for fonts — non-render-blocking -->
+<!-- Favicon / brand -->
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_64/v1781260912/Untitled_design_1_ky4go6.png">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_180/v1781260912/Untitled_design_1_ky4go6.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nonprofit Cloud Salesforce Experts | TwinStack Solutions">
+<meta property="og:description" content="Full-service Salesforce for nonprofits and charities — NPSP, donor CRM, and Power of Us setup. Book a free assessment.">
+<meta property="og:url" content="https://www.twinstack.net/">
+
+<!-- Preconnect: fonts + image CDNs (LCP) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- font-display:swap prevents render block -->
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet"></noscript>
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,500;1,500&display=swap"></noscript>
 
 <style>
-/* ─────────────────────────────────────────
-   RESET & TOKENS
-───────────────────────────────────────── */
+/* ───────── RESET & TOKENS ───────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :root{
   --blue:#0176D3;--blue-dk:#014486;--blue-lt:#E8F4FD;--blue-md:#C8E3F8;
   --text:#0A0A0A;--text-mid:#444;--text-soft:#777;
-  --border:#E5E5E5;--bg:#fff;--bg-soft:#F7F9FC;--green:#2E844A;
-  --sora:'Sora',system-ui,sans-serif;--lora:'Lora',Georgia,serif;
+  --border:#E5E5E5;--bg:#fff;--bg-soft:#F7F9FC;--green:#2E844A;--green-lt:#EBF9F1;
+  --sora:'Sora',system-ui,-apple-system,sans-serif;--lora:'Lora',Georgia,serif;
   --ease:cubic-bezier(.4,0,.2,1);
 }
 body{font-family:var(--sora);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1}
+img{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto}
 
-/* ─────────────────────────────────────────
-   SCROLL PROGRESS BAR
-───────────────────────────────────────── */
-#progress-bar{
-  position:fixed;top:0;left:0;height:2px;width:0%;
-  background:var(--blue);z-index:200;
-  transition:width .05s linear;
-  will-change:width;
-}
+/* ───────── SCROLL PROGRESS ───────── */
+#progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--blue);z-index:200;will-change:width}
 
-/* ─────────────────────────────────────────
-   NAV
-───────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  padding:0 64px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:box-shadow .3s var(--ease);
-}
+/* ───────── NAV ───────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(20px,5vw,64px);height:72px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s var(--ease)}
 nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-icon{
-  width:32px;height:32px;background:var(--blue);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .3s var(--ease);
-}
-.nav-logo:hover .nav-logo-icon{transform:rotate(-8deg) scale(1.08)}
-.nav-logo-icon svg{width:22px;height:22px}
-.nav-logo-name{font-size:.88rem;font-weight:600;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:170px}
+.nav-logo img{height:48px;width:auto}
+.nav-logo-name{font-size:.86rem;font-weight:600;color:var(--text);letter-spacing:-.02em;white-space:nowrap}
 .nav-logo-name span{color:var(--blue)}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-links a{
-  font-size:.83rem;font-weight:400;color:var(--text-mid);text-decoration:none;
-  position:relative;padding-bottom:2px;transition:color .2s;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
-  background:var(--blue);transition:width .25s var(--ease);
-}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:.83rem;color:var(--text-mid);text-decoration:none;position:relative;padding-bottom:2px;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--blue);transition:width .25s var(--ease)}
 .nav-links a:hover{color:var(--blue)}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 .nav-links a.active{color:var(--blue)}
-.nav-btn{
-  background:var(--blue);color:#fff;padding:9px 20px;border-radius:6px;
-  font-size:.83rem;font-weight:500;text-decoration:none;
-  transition:background .2s,transform .15s,box-shadow .2s;display:inline-block;
-  /* magnetic handled by JS */
-}
+.nav-btn{background:var(--blue);color:#fff;padding:9px 20px;border-radius:6px;font-size:.83rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;white-space:nowrap}
 .nav-btn:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 4px 16px rgba(1,118,211,.3)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--text)}
+.nav-toggle svg{width:24px;height:24px}
 
-/* ─────────────────────────────────────────
-   HERO
-───────────────────────────────────────── */
-.hero{
-  min-height:100vh;padding:120px 64px 80px;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
-}
-/* Spotlight follows mouse — updated via JS CSS var */
-.hero::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(1,118,211,.05) 0%,transparent 70%);
-  transition:background .1s;z-index:0;
-}
-.hero-orb{
-  position:absolute;border-radius:50%;pointer-events:none;
-  will-change:transform;transition:transform .08s linear;
-}
-.hero-orb-1{
-  width:560px;height:560px;top:-160px;right:-160px;
-  background:radial-gradient(circle,var(--blue-lt) 0%,transparent 70%);
-}
-.hero-orb-2{
-  width:340px;height:340px;bottom:-80px;left:-80px;
-  background:radial-gradient(circle,#EDF7F0 0%,transparent 70%);
-}
-.hero-inner{
-  max-width:1200px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  position:relative;z-index:1;
-}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--blue-lt);color:var(--blue);padding:6px 14px;
-  border-radius:100px;font-size:.72rem;font-weight:500;letter-spacing:.04em;
-  margin-bottom:28px;
-  opacity:0;transform:translateY(16px);
-  animation:fadeUp .55s .05s var(--ease) forwards;
-}
-.hero-tag-dot{
-  width:6px;height:6px;background:var(--blue);border-radius:50%;
-  animation:blink 2s ease infinite;
-}
+/* ───────── HERO ───────── */
+.hero{min-height:100vh;padding:132px clamp(20px,5vw,64px) 70px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,40%),rgba(1,118,211,.06) 0%,transparent 70%)}
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform}
+.hero-orb-1{width:560px;height:560px;top:-160px;right:-160px;background:radial-gradient(circle,var(--blue-lt) 0%,transparent 70%)}
+.hero-orb-2{width:340px;height:340px;bottom:-80px;left:-80px;background:radial-gradient(circle,var(--green-lt) 0%,transparent 70%)}
+.hero-inner{width:100%;display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:var(--blue-lt);color:var(--blue);padding:6px 14px;border-radius:100px;font-size:.72rem;font-weight:500;letter-spacing:.03em;margin-bottom:26px;opacity:0;transform:translateY(16px);animation:fadeUp .55s .05s var(--ease) forwards}
+.hero-tag-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:blink 2s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-
-/* Word-by-word h1 reveal */
-.hero-h1{
-  font-family:var(--lora);font-size:clamp(2.6rem,4vw,3.8rem);font-weight:500;
-  line-height:1.18;letter-spacing:-.025em;color:var(--text);margin-bottom:24px;
-}
-.hero-h1 .word{
-  display:inline-block;opacity:0;transform:translateY(22px);
-  animation:fadeUp .5s var(--ease) forwards;
-}
+.hero-h1{font-family:var(--lora);font-size:clamp(2.4rem,4vw,3.7rem);font-weight:500;line-height:1.16;letter-spacing:-.025em;color:var(--text);margin-bottom:22px}
+.hero-h1 .word{display:inline-block;opacity:0;transform:translateY(22px);animation:fadeUp .5s var(--ease) forwards}
 .hero-h1 em{font-style:italic;color:var(--blue)}
-
-.hero-p{
-  font-size:1rem;font-weight:300;color:var(--text-mid);line-height:1.75;
-  max-width:460px;margin-bottom:40px;
-  opacity:0;animation:fadeUp .55s .55s var(--ease) forwards;
-}
-.hero-actions{
-  display:flex;align-items:center;gap:14px;
-  opacity:0;animation:fadeUp .55s .65s var(--ease) forwards;
-}
-.btn-blue{
-  background:var(--blue);color:#fff;padding:13px 28px;border-radius:7px;
-  font-size:.88rem;font-weight:500;text-decoration:none;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  display:inline-flex;align-items:center;gap:7px;position:relative;overflow:hidden;
-}
-.btn-blue::before{
-  content:'';position:absolute;inset:0;
-  background:rgba(255,255,255,0);transition:background .2s;
-}
-.btn-blue:hover::before{background:rgba(255,255,255,.08)}
+.hero-p{font-size:1rem;font-weight:300;color:var(--text-mid);line-height:1.75;max-width:480px;margin-bottom:36px;opacity:0;animation:fadeUp .55s .5s var(--ease) forwards}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .55s .6s var(--ease) forwards}
+.btn-blue{background:var(--blue);color:#fff;padding:13px 26px;border-radius:7px;font-size:.88rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-blue:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,118,211,.3)}
-.btn-ghost{
-  color:var(--text-mid);font-size:.88rem;font-weight:400;text-decoration:none;
-  display:inline-flex;align-items:center;gap:6px;transition:color .2s;
-}
+.btn-ghost{color:var(--text-mid);font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
 .btn-ghost svg{transition:transform .25s var(--ease)}
 .btn-ghost:hover{color:var(--blue)}
 .btn-ghost:hover svg{transform:translateX(4px)}
+.hero-proof{display:flex;gap:34px;margin-top:48px;padding-top:34px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .55s .7s var(--ease) forwards}
+.proof-item{display:flex;flex-direction:column;gap:4px}
+.proof-num{font-family:var(--lora);font-size:1.8rem;font-weight:500;color:var(--blue);letter-spacing:-.03em;line-height:1}
+.proof-label{font-size:.72rem;color:var(--text-soft);max-width:110px;line-height:1.4}
 
-.hero-proof{
-  display:flex;gap:36px;margin-top:52px;padding-top:36px;border-top:1px solid var(--border);
-  opacity:0;animation:fadeUp .55s .75s var(--ease) forwards;
-}
-.proof-item{display:flex;flex-direction:column;gap:3px}
-.proof-num{font-family:var(--lora);font-size:1.8rem;font-weight:500;color:var(--text);letter-spacing:-.03em;line-height:1}
-.proof-num b{color:var(--blue);font-weight:500}
-.proof-label{font-size:.72rem;color:var(--text-soft);font-weight:400;letter-spacing:.02em;margin-top:4px}
-
-/* HERO CARD */
-.hero-right{
-  opacity:0;animation:fadeIn .7s .45s var(--ease) forwards;
-  perspective:900px;
-}
-.dash-card{
-  background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;
-  box-shadow:0 4px 40px rgba(0,0,0,.07);position:relative;
-  transform-style:preserve-3d;
-  transition:box-shadow .3s var(--ease);
-  will-change:transform;
-}
-.dash-float-tag{
-  position:absolute;top:-16px;right:24px;background:var(--blue);color:#fff;
-  font-size:.7rem;font-weight:500;padding:6px 14px;border-radius:100px;
-  box-shadow:0 4px 14px rgba(1,118,211,.35);
-  animation:floatY 3s ease infinite;
-}
+/* hero visual: volunteer photo + floating product card */
+.hero-right{opacity:0;animation:fadeIn .7s .4s var(--ease) forwards;perspective:1000px}
+.hero-visual{position:relative;will-change:transform}
+.hero-photo-frame{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 18px 60px rgba(1,68,134,.18);border:1px solid var(--border)}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover}
+.hero-photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,68,134,.05) 0%,transparent 35%,rgba(1,68,134,.22) 100%)}
+.hero-photo-cap{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--blue);padding:6px 13px;border-radius:100px;font-size:.7rem;font-weight:500;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.hero-photo-cap svg{width:13px;height:13px}
+.dash-card{position:absolute;bottom:-26px;left:-26px;width:62%;min-width:248px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 14px 44px rgba(0,0,0,.14);z-index:3;transform-style:preserve-3d;will-change:transform}
+.dash-float-tag{position:absolute;top:-13px;right:16px;background:var(--blue);color:#fff;font-size:.66rem;font-weight:500;padding:5px 12px;border-radius:100px;box-shadow:0 4px 14px rgba(1,118,211,.35);animation:floatY 3s ease infinite}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
-.dash-title{font-size:.88rem;font-weight:600}
-.dash-badge{
-  background:#EBF9F1;color:var(--green);font-size:.7rem;font-weight:500;
-  padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;
-}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.dash-title{font-size:.82rem;font-weight:600}
+.dash-sub{font-size:.64rem;color:var(--text-soft);margin-bottom:14px}
+.dash-badge{background:var(--green-lt);color:var(--green);font-size:.64rem;font-weight:500;padding:3px 9px;border-radius:100px;display:flex;align-items:center;gap:5px}
 .dash-badge::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s ease infinite}
-.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
-.kpi{background:var(--bg-soft);border-radius:10px;padding:14px;transition:background .2s}
-.kpi:hover{background:var(--blue-lt)}
-.kpi-val{font-family:var(--lora);font-size:1.5rem;font-weight:500;color:var(--text);margin-bottom:3px}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.kpi{background:var(--bg-soft);border-radius:9px;padding:10px}
+.kpi-val{font-family:var(--lora);font-size:1.15rem;font-weight:500;color:var(--text);margin-bottom:2px}
 .kpi-val span{color:var(--blue)}
-.kpi-label{font-size:.68rem;color:var(--text-soft)}
-.dash-progress-wrap{margin-bottom:20px}
-.dash-progress-head{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-soft);margin-bottom:8px}
+.kpi-label{font-size:.58rem;color:var(--text-soft)}
+.dash-progress-head{display:flex;justify-content:space-between;font-size:.66rem;color:var(--text-soft);margin-bottom:7px}
 .dash-progress-head strong{color:var(--text);font-weight:500}
-.dash-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
-.dash-bar-fill{
-  height:100%;background:linear-gradient(90deg,var(--blue),#5BC0EB);
-  border-radius:3px;width:0;
-  animation:barFill 1.4s 1s var(--ease) forwards;
-}
+.dash-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.dash-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),#5BC0EB);border-radius:3px;width:0;animation:barFill 1.4s 1s var(--ease) forwards}
 @keyframes barFill{to{width:73%}}
-.dash-donors{display:flex;align-items:center;gap:10px}
-.donor-avatars{display:flex}
-.donor-av{
-  width:28px;height:28px;border-radius:50%;border:2px solid #fff;
-  margin-left:-8px;display:flex;align-items:center;justify-content:center;
-  font-size:.65rem;font-weight:600;color:#fff;
-  transition:transform .2s var(--ease);
-}
-.donor-av:first-child{margin-left:0}
-.donor-avatars:hover .donor-av{transform:translateY(-3px);margin-left:-4px}
-.donor-av:nth-child(1){background:#0176D3}
-.donor-av:nth-child(2){background:#2E844A}
-.donor-av:nth-child(3){background:#CA8A04}
-.donor-av:nth-child(4){background:#9333EA}
-.donor-text{font-size:.75rem;color:var(--text-soft)}
-.donor-text strong{color:var(--text);font-weight:500}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
+/* ───────── TRUST STRIP ───────── */
+.trust{padding:30px clamp(20px,5vw,64px);border-bottom:1px solid var(--border);background:var(--bg-soft)}
+.trust-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.trust-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-soft);white-space:nowrap}
+.trust-items{display:flex;gap:14px;flex-wrap:wrap}
+.trust-pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:.76rem;color:var(--text-mid);transition:border-color .2s,color .2s,transform .15s}
+.trust-pill:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+.trust-pill svg{width:14px;height:14px;flex-shrink:0;color:var(--blue)}
 
-/* ─────────────────────────────────────────
-   SHARED SECTION TOKENS
-───────────────────────────────────────── */
-.wrap{max-width:1200px;margin:0 auto}
-.section-tag{
-  font-size:.72rem;font-weight:500;text-transform:uppercase;
-  letter-spacing:.1em;color:var(--blue);margin-bottom:12px;
-}
-.section-h2{
-  font-family:var(--lora);font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:500;
-  line-height:1.2;letter-spacing:-.02em;color:var(--text);margin-bottom:16px;
-}
+/* ───────── SHARED ───────── */
+.section-tag{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:12px}
+.section-h2{font-family:var(--lora);font-size:clamp(1.8rem,2.8vw,2.5rem);font-weight:500;line-height:1.2;letter-spacing:-.02em;color:var(--text);margin-bottom:16px}
 .section-h2 em{font-style:italic;color:var(--blue)}
 .section-p{font-size:.95rem;font-weight:300;color:var(--text-mid);line-height:1.8}
-
-/* Scroll reveal — GPU only */
-.reveal{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .65s var(--ease),transform .65s var(--ease);
-  will-change:transform,opacity;
-}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s var(--ease),transform .65s var(--ease);will-change:transform,opacity}
 .reveal.on{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}
-.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 
-/* ─────────────────────────────────────────
-   SERVICES
-───────────────────────────────────────── */
-.services{padding:100px 64px}
-.services-head{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:60px;align-items:end;margin-bottom:56px;
-}
+/* ───────── SERVICES ───────── */
+.services{padding:96px clamp(20px,5vw,64px)}
+.services-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.svc{
-  background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;
-  padding:32px 28px;cursor:default;position:relative;overflow:hidden;
-  transition:border-color .25s,box-shadow .25s;
-  /* 3D tilt handled by JS */
-  transform-style:preserve-3d;will-change:transform;
-}
-/* Ripple on hover — CSS only */
-.svc::after{
-  content:'';position:absolute;
-  width:120%;padding-top:120%;
-  top:var(--ry,50%);left:var(--rx,50%);
-  transform:translate(-50%,-50%) scale(0);
-  background:rgba(1,118,211,.05);border-radius:50%;
-  transition:transform .5s var(--ease),opacity .5s;
-  opacity:0;pointer-events:none;
-}
+.svc{background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:30px 26px;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s;transform-style:preserve-3d;will-change:transform}
+.svc::after{content:'';position:absolute;width:120%;padding-top:120%;top:var(--ry,50%);left:var(--rx,50%);transform:translate(-50%,-50%) scale(0);background:rgba(1,118,211,.05);border-radius:50%;transition:transform .5s var(--ease),opacity .5s;opacity:0;pointer-events:none}
 .svc:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1}
 .svc:hover{border-color:var(--blue);box-shadow:0 4px 24px rgba(1,118,211,.1)}
-.svc-icon{
-  width:44px;height:44px;background:var(--blue-lt);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
-  margin-bottom:18px;transition:transform .3s var(--ease),background .25s;
-}
+.svc-icon{width:44px;height:44px;background:var(--blue-lt);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:transform .3s var(--ease),background .25s;position:relative;z-index:1}
+.svc-icon svg{width:22px;height:22px;color:var(--blue)}
 .svc:hover .svc-icon{transform:scale(1.1) rotate(-4deg);background:var(--blue-md)}
-.svc-name{font-size:.95rem;font-weight:600;margin-bottom:8px;color:var(--text)}
-.svc-desc{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7}
+.svc-name{font-size:.95rem;font-weight:600;margin-bottom:8px;position:relative;z-index:1}
+.svc-desc{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7;position:relative;z-index:1}
 
-/* ─────────────────────────────────────────
-   WHY
-───────────────────────────────────────── */
-.why{padding:100px 64px;background:var(--bg-soft)}
-.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
-.pillars{display:flex;flex-direction:column;margin-top:36px}
-.pillar{
-  display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--border);
-  cursor:default;
-  transition:padding-left .25s var(--ease),background .2s;
-  border-radius:4px;
-}
+/* ───────── WHY ───────── */
+.why{padding:96px clamp(20px,5vw,64px);background:var(--bg-soft)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pillars{display:flex;flex-direction:column;margin-top:32px}
+.pillar{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--border);transition:padding-left .25s var(--ease)}
 .pillar:last-child{border-bottom:none}
 .pillar:hover{padding-left:10px}
 .pillar-n{font-size:.72rem;color:var(--blue);font-weight:500;padding-top:3px;min-width:22px;flex-shrink:0}
 .pillar-title{font-size:.92rem;font-weight:600;margin-bottom:5px}
 .pillar-text{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7}
-.why-quote-block{
-  background:#fff;border:1px solid var(--border);border-left:3px solid var(--blue);
-  border-radius:10px;padding:28px;margin-top:28px;
-  transition:box-shadow .3s var(--ease),transform .3s var(--ease);
-}
+.why-quote-block{background:#fff;border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:10px;padding:28px;transition:box-shadow .3s var(--ease),transform .3s var(--ease)}
 .why-quote-block:hover{box-shadow:0 6px 28px rgba(1,118,211,.1);transform:translateY(-3px)}
-.why-quote-text{font-family:var(--lora);font-style:italic;font-size:1rem;line-height:1.7;color:var(--text-mid);margin-bottom:14px}
+.why-quote-text{font-family:var(--lora);font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--text-mid);margin-bottom:14px}
 .why-quote-by{font-size:.78rem;color:var(--text-soft)}
 .why-quote-by strong{color:var(--text);font-weight:500}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
-.badge{
-  background:#fff;border:1px solid var(--border);border-radius:6px;
-  padding:6px 13px;font-size:.72rem;color:var(--text-soft);font-weight:400;
-  transition:border-color .2s,color .2s,transform .15s;cursor:default;
-}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.badge{background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 13px;font-size:.72rem;color:var(--text-soft);transition:border-color .2s,color .2s,transform .15s}
 .badge:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
 
-/* ─────────────────────────────────────────
-   PROCESS
-───────────────────────────────────────── */
-.process{padding:100px 64px}
-.process-head{text-align:center;max-width:520px;margin:0 auto 64px}
+/* ───────── FOUNDER ───────── */
+.founder{padding:96px clamp(20px,5vw,64px)}
+.founder-layout{display:grid;grid-template-columns:.6fr 1.4fr;gap:72px;align-items:center}
+.founder-photo-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+.founder-photo-circle{width:220px;height:220px;border-radius:50%;overflow:hidden;border:4px solid var(--blue-md);box-shadow:0 8px 32px rgba(1,68,134,.18);flex-shrink:0}
+.founder-photo-circle img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.founder-cert-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-lt);border:1px solid var(--blue-md);border-radius:100px;padding:8px 16px;font-size:.74rem;color:var(--blue);font-weight:500}
+.founder-cert-badge svg{width:14px;height:14px;flex-shrink:0}
+.founder-stats{display:flex;gap:14px;margin:26px 0 28px}
+.fstat{flex:1;background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:border-color .25s,transform .25s var(--ease)}
+.fstat:hover{border-color:var(--blue);transform:translateY(-3px)}
+.fstat-num{font-family:var(--lora);font-size:1.7rem;font-weight:500;color:var(--blue);line-height:1;margin-bottom:6px}
+.fstat-label{font-size:.72rem;color:var(--text-soft);line-height:1.4}
+.founder-body{font-size:.92rem;font-weight:300;color:var(--text-mid);line-height:1.8;margin-bottom:18px}
+.founder-links{display:flex;gap:12px;flex-wrap:wrap}
+.founder-link{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--blue);text-decoration:none;border:1px solid var(--border);border-radius:7px;padding:9px 16px;transition:border-color .2s,background .2s,transform .15s}
+.founder-link:hover{border-color:var(--blue);background:var(--blue-lt);transform:translateY(-2px)}
+.founder-link svg{width:15px;height:15px}
+
+/* ───────── PROCESS ───────── */
+.process{padding:96px clamp(20px,5vw,64px);background:var(--bg-soft)}
+.process-head{text-align:center;max-width:520px;margin:0 auto 60px}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
-.steps::before{
-  content:'';position:absolute;
-  top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);
-  height:1px;background:var(--border);
-}
-/* Animated line fill on scroll */
-.steps::after{
-  content:'';position:absolute;
-  top:28px;left:calc(12.5% + 14px);
-  height:1px;background:var(--blue);width:0;
-  transition:width 1.2s .3s var(--ease);
-}
+.steps::before{content:'';position:absolute;top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:1px;background:var(--border)}
+.steps::after{content:'';position:absolute;top:28px;left:calc(12.5% + 14px);height:1px;background:var(--blue);width:0;transition:width 1.2s .3s var(--ease)}
 .steps.on::after{width:calc(75% - 28px)}
 .step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px}
-.step-dot{
-  width:56px;height:56px;background:var(--bg-soft);border:1px solid var(--border);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;margin-bottom:18px;position:relative;z-index:1;
-  transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s;
-}
-.step:hover .step-dot{
-  background:var(--blue-lt);border-color:var(--blue);
-  transform:translateY(-5px);box-shadow:0 8px 20px rgba(1,118,211,.2);
-}
-.step-num-badge{
-  position:absolute;top:-5px;right:-5px;width:18px;height:18px;
-  background:var(--blue);color:#fff;border-radius:50%;
-  font-size:.6rem;font-weight:600;display:flex;align-items:center;justify-content:center;
-}
+.step-dot{width:56px;height:56px;background:#fff;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;z-index:1;transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s}
+.step-dot svg{width:24px;height:24px;color:var(--blue)}
+.step:hover .step-dot{background:var(--blue-lt);border-color:var(--blue);transform:translateY(-5px);box-shadow:0 8px 20px rgba(1,118,211,.2)}
+.step-num-badge{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--blue);color:#fff;border-radius:50%;font-size:.6rem;font-weight:600;display:flex;align-items:center;justify-content:center}
 .step-title{font-size:.88rem;font-weight:600;margin-bottom:8px}
 .step-text{font-size:.78rem;font-weight:300;color:var(--text-soft);line-height:1.7}
 
-/* ─────────────────────────────────────────
-   IMPACT
-───────────────────────────────────────── */
-.impact{padding:100px 64px;background:var(--bg-soft)}
-.impact-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
-.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.ic{
-  background:#fff;border:1px solid var(--border);border-radius:12px;padding:32px;
-  transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s;
-}
-.ic:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-4px);border-color:var(--blue-md)}
-.ic.span2{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.ic-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:500;margin-bottom:10px}
-.ic-org{font-family:var(--lora);font-size:1.3rem;font-weight:500;margin-bottom:10px}
-.ic-text{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7;margin-bottom:22px}
-.ic-nums{display:flex;gap:24px}
-.ic-num-val{
-  font-family:var(--lora);font-size:2rem;font-weight:500;
-  color:var(--text);line-height:1;margin-bottom:3px;
-}
-.ic-num-val b{color:var(--blue);font-weight:500}
-.ic-num-label{font-size:.68rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.05em}
-.ic-quote{background:var(--bg-soft);border-radius:10px;padding:28px}
-.ic-quote-text{font-family:var(--lora);font-style:italic;font-size:.95rem;line-height:1.7;color:var(--text-mid);margin-bottom:14px}
-.ic-quote-author{font-size:.78rem;font-weight:500;color:var(--text)}
-.ic-quote-role{font-size:.72rem;color:var(--text-soft);margin-top:2px}
+/* ───────── IMPACT / WORK ───────── */
 
-/* ─────────────────────────────────────────
-   FAQ
-───────────────────────────────────────── */
-.faq{padding:100px 64px;background:var(--bg-soft)}
-.faq-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+/* ───────── IMPACT / WORK ───────── */
+.impact{padding:96px clamp(20px,5vw,64px);background:var(--bg-soft)}
+.impact-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:48px}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.work-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px;transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s}
+.work-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-4px);border-color:var(--blue-md)}
+.work-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);font-weight:500;margin-bottom:12px}
+.work-org{font-family:var(--lora);font-size:1.2rem;font-weight:500;margin-bottom:10px}
+.work-text{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.7}
+.work-card.feature{grid-column:span 3;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;padding:40px}
+.work-card.feature .work-org{font-size:1.5rem}
+.work-card.feature .work-text{font-size:.9rem;margin-bottom:24px}
+.work-nums{display:flex;gap:30px}
+.work-num-val{font-family:var(--lora);font-size:1.6rem;font-weight:500;color:var(--blue);line-height:1;margin-bottom:4px}
+.work-num-label{font-size:.66rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.04em}
+.feature-aside{background:var(--bg-soft);border-radius:12px;padding:28px}
+.feature-aside h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);margin-bottom:16px;font-weight:500}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.feature-list li{font-size:.84rem;color:var(--text-mid);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.feature-list svg{width:16px;height:16px;color:var(--green);flex-shrink:0;margin-top:1px}
+
+/* ───────── TESTIMONIALS ───────── */
+.testi{padding:96px clamp(20px,5vw,64px)}
+.testi-head{text-align:center;max-width:560px;margin:0 auto 52px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:30px 28px;display:flex;flex-direction:column;transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s}
+.tcard:hover{box-shadow:0 10px 36px rgba(0,0,0,.08);transform:translateY(-4px);border-color:var(--blue-md)}
+.tcard-stars{display:flex;gap:3px;margin-bottom:16px}
+.tcard-stars svg{width:16px;height:16px;color:#F0A500}
+.tcard-quote{font-size:.9rem;font-weight:300;color:var(--text-mid);line-height:1.75;margin-bottom:22px;flex:1}
+.tcard-meta{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--border)}
+.tcard-avatar{width:40px;height:40px;border-radius:10px;background:var(--blue-lt);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.82rem;flex-shrink:0}
+.tcard-who b{font-size:.82rem;display:block}
+.tcard-who span{font-size:.72rem;color:var(--text-soft)}
+
+/* ───────── FAQ ───────── */
+.faq{padding:96px clamp(20px,5vw,64px);background:var(--bg-soft)}
+.faq-layout{display:grid;grid-template-columns:1fr 2fr;gap:72px;align-items:start}
 .faq-list{display:flex;flex-direction:column}
 .faq-item{border-bottom:1px solid var(--border)}
-.faq-q{
-  width:100%;background:none;border:none;cursor:pointer;
-  text-align:left;padding:20px 0;
-  display:flex;justify-content:space-between;align-items:center;gap:16px;
-  font-family:var(--sora);font-size:.88rem;font-weight:500;color:var(--text);
-  transition:color .2s;
-}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--sora);font-size:.9rem;font-weight:500;color:var(--text);transition:color .2s}
 .faq-q:hover{color:var(--blue)}
-.faq-chevron{
-  width:20px;height:20px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:.75rem;
-  transition:background .25s,border-color .25s,transform .3s var(--ease);
-}
+.faq-chevron{width:20px;height:20px;flex-shrink:0;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,transform .3s var(--ease)}
+.faq-chevron svg{width:11px;height:11px}
 .faq-item.open .faq-chevron{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(45deg)}
-.faq-a{
-  font-size:.84rem;font-weight:300;color:var(--text-soft);line-height:1.78;
-  max-height:0;overflow:hidden;padding-bottom:0;
-  transition:max-height .4s var(--ease),padding-bottom .3s;
-}
-.faq-item.open .faq-a{max-height:250px;padding-bottom:20px}
+.faq-a{font-size:.85rem;font-weight:300;color:var(--text-soft);line-height:1.78;max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding-bottom .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
 
-/* ─────────────────────────────────────────
-   CTA
-───────────────────────────────────────── */
-.cta-section{padding:100px 64px;background:var(--blue);position:relative;overflow:hidden}
-/* Mouse-following glow — updated via JS */
-.cta-section::before{
-  content:'';position:absolute;
-  width:500px;height:500px;border-radius:50%;pointer-events:none;
-  background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 70%);
-  transform:translate(var(--cx,-50%), var(--cy,-50%)) translate(-50%,-50%);
-  transition:transform .15s linear;
-}
-.cta-orb{
-  position:absolute;border-radius:50%;pointer-events:none;
-  background:rgba(255,255,255,.04);
-}
-.cta-orb-1{width:400px;height:400px;top:-100px;right:-100px}
-.cta-orb-2{width:280px;height:280px;bottom:-80px;left:-80px}
-.cta-inner{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:1}
-.cta-h2{
-  font-family:var(--lora);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;
-  line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:18px;
-}
-.cta-p{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.8);line-height:1.75;margin-bottom:40px}
-.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-white{
-  background:#fff;color:var(--blue);padding:13px 28px;border-radius:7px;
-  font-size:.88rem;font-weight:600;text-decoration:none;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  display:inline-flex;align-items:center;gap:7px;
-}
-.btn-white:hover{background:var(--blue-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.btn-outline-white{
-  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);
-  padding:13px 28px;border-radius:7px;font-size:.88rem;font-weight:400;
-  text-decoration:none;transition:border-color .2s,transform .15s,background .2s;
-  display:inline-flex;align-items:center;gap:7px;
-}
-.btn-outline-white:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);transform:translateY(-2px)}
-.cta-note{margin-top:18px;font-size:.74rem;color:rgba(255,255,255,.5)}
+/* ───────── CONTACT ───────── */
+.contact{padding:96px clamp(20px,5vw,64px);background:linear-gradient(135deg,#0176D3 0%,#014486 100%);position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 70%);transform:translate(var(--cx,-50%),var(--cy,-50%)) translate(-50%,-50%);transition:transform .15s linear}
+.contact-orb{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.04)}
+.contact-orb-1{width:380px;height:380px;top:-120px;right:-80px}
+.contact-orb-2{width:260px;height:260px;bottom:-90px;left:-60px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start;position:relative;z-index:1}
+.contact-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:100px;font-size:.72rem;font-weight:500;letter-spacing:.03em;margin-bottom:20px}
+.contact-h2{font-family:var(--lora);font-size:clamp(1.9rem,3vw,2.6rem);font-weight:500;line-height:1.2;color:#fff;margin-bottom:16px}
+.contact-h2 em{font-style:italic}
+.contact-p{font-size:.94rem;font-weight:300;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:30px;max-width:420px}
+.contact-methods{display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
+.cmethod{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none;padding:14px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:11px;transition:background .2s,transform .15s,border-color .2s}
+.cmethod:hover{background:rgba(255,255,255,.15);transform:translateX(4px);border-color:rgba(255,255,255,.3)}
+.cmethod-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cmethod-icon svg{width:19px;height:19px;color:#fff}
+.cmethod-val{font-size:.92rem;font-weight:500}
+.contact-meta{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.7}
+.contact-meta strong{color:#fff;font-weight:500}
+/* form card */
+.contact-card{background:#fff;border-radius:18px;padding:clamp(26px,3vw,38px);box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.contact-card h3{font-family:var(--lora);font-size:1.4rem;font-weight:500;margin-bottom:6px}
+.contact-card .sub{font-size:.82rem;color:var(--text-soft);margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.76rem;font-weight:500;color:var(--text-mid);margin-bottom:7px}
+.field label .req{color:var(--blue)}
+.field input,.field textarea{width:100%;font-family:var(--sora);font-size:.86rem;color:var(--text);background:var(--bg-soft);border:1px solid var(--border);border-radius:9px;padding:12px 14px;transition:border-color .2s,box-shadow .2s,background .2s}
+.field input::placeholder,.field textarea::placeholder{color:#AAB}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(1,118,211,.12)}
+.field textarea{resize:vertical;min-height:96px;line-height:1.6}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{width:100%;font-family:var(--sora);font-size:.9rem;font-weight:600;color:#fff;background:var(--blue);border:none;border-radius:9px;padding:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background .2s,transform .15s,box-shadow .2s;margin-top:4px}
+.form-submit svg{width:15px;height:15px}
+.form-submit:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,118,211,.3)}
+.form-note{font-size:.72rem;color:var(--text-soft);text-align:center;margin-top:14px;line-height:1.6}
 
-/* ─────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────── */
-footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(--bg)}
-.footer-top{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;
-  max-width:1200px;margin:0 auto 44px;
-  padding-bottom:44px;border-bottom:1px solid var(--border);
-}
-.footer-brand-p{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75;margin-top:12px;max-width:260px}
-.footer-family{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.fam-tag{
-  background:var(--bg-soft);border:1px solid var(--border);border-radius:5px;
-  padding:5px 11px;font-size:.7rem;color:var(--text-soft);text-decoration:none;
-  transition:border-color .2s,color .2s,transform .15s;
-}
-.fam-tag:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+/* ───────── FOOTER ───────── */
+footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border);background:var(--bg)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.footer-logo img{height:32px;width:auto}
+.footer-logo-name{font-size:.86rem;font-weight:600;color:var(--text)}
+.footer-logo-name span{color:var(--blue)}
+.footer-brand-p{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75;margin-top:14px;max-width:280px}
 .footer-col-h{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft);margin-bottom:16px}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
 .footer-links a{font-size:.82rem;font-weight:300;color:var(--text-soft);text-decoration:none;transition:color .2s,padding-left .2s}
 .footer-links a:hover{color:var(--blue);padding-left:4px}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
-.footer-copy{font-size:.75rem;color:#BBB}
-.footer-copy a{color:var(--blue);text-decoration:none}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:.75rem;color:#AAA}
 .socials{display:flex;gap:10px}
-.soc{
-  width:32px;height:32px;border:1px solid var(--border);border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--text-soft);text-decoration:none;font-size:.75rem;
-  transition:border-color .2s,color .2s,transform .2s;
-}
+.soc{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
+.soc svg{width:16px;height:16px}
 .soc:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
 
-/* ─────────────────────────────────────────
-   REDUCED MOTION
-───────────────────────────────────────── */
+/* ───────── RESPONSIVE ───────── */
+@media(max-width:980px){
+  .hero-inner,.services-head,.why-layout,.founder-layout,.impact-head,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .hero-right{order:-1;max-width:420px;margin:0 auto 14px}
+  .dash-card{left:0;width:74%}
+  .founder-layout{grid-template-columns:1fr;gap:36px;justify-items:center}
+  .founder-photo-wrap{align-items:center}
+  .services-grid,.work-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .work-card.feature{grid-column:span 2;grid-template-columns:1fr;gap:28px;padding:32px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:32px 16px}
+  .steps::before,.steps::after{display:none}
+  .faq-layout{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:18px clamp(20px,5vw,64px);gap:18px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  .hero-proof{flex-wrap:wrap;gap:24px}
+  .services-grid,.work-grid,.testi-grid,.steps{grid-template-columns:1fr}
+  .work-card.feature{grid-column:span 1}
+  .founder-stats{flex-wrap:wrap}.fstat{min-width:calc(50% - 7px)}
+  .trust-inner{justify-content:flex-start}
+  .field-row{grid-template-columns:1fr}
+  .dash-card{position:static;width:100%;margin-top:14px}
+  .hero-photo-frame{aspect-ratio:4/3.4}
+}
+
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
+  .hero-h1 .word,.hero-tag,.hero-p,.hero-actions,.hero-proof,.hero-right{opacity:1!important;transform:none!important;animation:none!important}
 }
 </style>
 </head>
 <body>
 
-<!-- Scroll progress -->
 <div id="progress-bar"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Salesforce-style cloud: bumpy top, flat-ish bottom -->
-  <path d="M25.5 13.5c0-.17-.01-.34-.02-.5A5 5 0 0 0 21 8a5 5 0 0 0-2.5.67A6 6 0 0 0 7.2 12.1 4.5 4.5 0 0 0 8 21h17a4.5 4.5 0 0 0 .5-8.5z" fill="white"/>
-  <!-- Heart inside the cloud -->
-  <path d="M16 18.2l-4.1-4.1a2.3 2.3 0 0 1 3.25-3.25L16 11.7l.85-.85a2.3 2.3 0 0 1 3.25 3.25L16 18.2z" fill="#0176D3"/>
-</svg>
-    </div>
+  <a href="#hero" class="nav-logo" aria-label="TwinStack Solutions home">
+    <img src="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_140/v1781260912/Untitled_design_4_so832c.png" alt="TwinStack Solutions logo" width="50" height="48" decoding="async">
     <span class="nav-logo-name">Nonprofit <span>Cloud Experts</span></span>
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#services" data-section="services">Services</a></li>
     <li><a href="#why" data-section="why">Why Us</a></li>
-    <li><a href="#impact" data-section="impact">Impact</a></li>
+    <li><a href="#founder" data-section="founder">Our Architect</a></li>
+    <li><a href="#impact" data-section="impact">Work</a></li>
     <li><a href="#faq" data-section="faq">FAQ</a></li>
+    <li><a href="#contact" data-section="contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-btn" id="nav-cta">Free Assessment</a>
+  <a href="https://calendar.app.google/HP3LiuNFisCt6xLo6" class="nav-btn" target="_blank" rel="noopener">Book a Call</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -543,74 +373,102 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
   <div class="hero-orb hero-orb-2" id="orb2"></div>
   <div class="hero-inner wrap">
     <div class="hero-left">
-      <div class="hero-tag"><div class="hero-tag-dot"></div>Salesforce for Nonprofits &amp; Charities</div>
-      <h1 class="hero-h1" id="hero-h1">
-        <!-- words injected by JS for stagger -->
-        Salesforce solutions built for <em>missions</em> that matter
-      </h1>
-      <p class="hero-p">We bring full-service Salesforce consulting, implementation, and support to nonprofits and charities — at pricing that reflects your purpose.</p>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Salesforce for Nonprofits &amp; Charities</div>
+      <h1 class="hero-h1" id="hero-h1">Salesforce solutions built for <em>missions</em> that matter</h1>
+      <p class="hero-p">TwinStack brings full-service Salesforce consulting, Nonprofit Cloud and NPSP implementation, and donor CRM to nonprofits and charities — backed by 12+ years and 30+ certified specialists.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-blue">
-          Get Free Assessment
+        <a href="https://calendar.app.google/HP3LiuNFisCt6xLo6" class="btn-blue" target="_blank" rel="noopener">Book a Call
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#impact" class="btn-ghost">
-          See Our Work
+        <a href="#impact" class="btn-ghost">See our work
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
       <div class="hero-proof">
-        <div class="proof-item"><div class="proof-num" data-count="40" data-suffix="+">0+</div><div class="proof-label">Nonprofits Served</div></div>
-        <div class="proof-item"><div class="proof-num" data-count="5" data-suffix="★">0★</div><div class="proof-label">Client Satisfaction</div></div>
-        <div class="proof-item"><div class="proof-num" data-count="30" data-suffix="%">0%</div><div class="proof-label">Avg. Cost Reduction</div></div>
+        <div class="proof-item"><div class="proof-num" data-target="12" data-suffix="+">0+</div><div class="proof-label">Years in the Salesforce ecosystem</div></div>
+        <div class="proof-item"><div class="proof-num" data-target="9" data-suffix="">0</div><div class="proof-label">Architect-level certifications</div></div>
+        <div class="proof-item"><div class="proof-num" data-target="30" data-suffix="+">0+</div><div class="proof-label">Certified Salesforce specialists</div></div>
       </div>
     </div>
     <div class="hero-right">
-      <div class="dash-card" id="dash-card">
-        <div class="dash-float-tag">✦ NPSP Certified</div>
-        <div class="dash-header">
-          <div class="dash-title">Hope Foundation — Donor CRM</div>
-          <div class="dash-badge">Live</div>
+      <div class="hero-visual" id="hero-visual">
+        <div class="hero-photo-frame">
+          <span class="hero-photo-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>Built for people who help people</span>
+          <img src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&w=900&q=70"
+               alt="Nonprofit volunteers organizing donations together at a community food bank"
+               width="900" height="990" fetchpriority="high" decoding="async">
         </div>
-        <div class="dash-kpis">
-          <div class="kpi"><div class="kpi-val">2.4<span>k</span></div><div class="kpi-label">Active Donors</div></div>
-          <div class="kpi"><div class="kpi-val">৳18<span>M</span></div><div class="kpi-label">Funds Tracked</div></div>
-          <div class="kpi"><div class="kpi-val">94<span>%</span></div><div class="kpi-label">Retention Rate</div></div>
-        </div>
-        <div class="dash-progress-wrap">
-          <div class="dash-progress-head"><strong>Annual Fundraising Goal</strong><span>73% reached</span></div>
-          <div class="dash-bar"><div class="dash-bar-fill"></div></div>
-        </div>
-        <div class="dash-donors">
-          <div class="donor-avatars">
-            <div class="donor-av">AK</div><div class="donor-av">RH</div>
-            <div class="donor-av">NI</div><div class="donor-av">+</div>
+        <div class="dash-card" id="dash-card">
+          <div class="dash-float-tag">✦ NPSP Certified</div>
+          <div class="dash-header"><div class="dash-title">Donor CRM</div><div class="dash-badge">Live</div></div>
+          <div class="dash-sub">Sample Nonprofit Cloud dashboard</div>
+          <div class="dash-kpis">
+            <div class="kpi"><div class="kpi-val">2.4<span>k</span></div><div class="kpi-label">Donors</div></div>
+            <div class="kpi"><div class="kpi-val">94<span>%</span></div><div class="kpi-label">Retention</div></div>
+            <div class="kpi"><div class="kpi-val">340<span>+</span></div><div class="kpi-label">Gifts</div></div>
           </div>
-          <div class="donor-text"><strong>12 new donors</strong> this week</div>
+          <div class="dash-progress-head"><strong>Annual goal</strong><span>73%</span></div>
+          <div class="dash-bar"><div class="dash-bar-fill"></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TRUST STRIP -->
+<section class="trust" aria-label="Credentials">
+  <div class="trust-inner wrap">
+    <div class="trust-label">Registered Salesforce Partner since 2018</div>
+    <div class="trust-items">
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Salesforce Consulting Partner</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>NPSP &amp; Nonprofit Cloud</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>9 Salesforce Certifications</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Power of Us Specialists</span>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="wrap">
     <div class="services-head reveal">
       <div>
-        <div class="section-tag">What We Do</div>
+        <div class="section-tag">What we do</div>
         <h2 class="section-h2">Everything your nonprofit<br>needs on <em>Salesforce</em></h2>
       </div>
-      <p class="section-p">From initial setup to ongoing support, we manage the full Salesforce journey so your team can stay focused on the work that actually matters.</p>
+      <p class="section-p">From first setup to ongoing support, we manage the full Salesforce journey so your team stays focused on the work that actually matters.</p>
     </div>
     <div class="services-grid">
-      <div class="svc reveal d1" data-tilt><div class="svc-icon">🌱</div><div class="svc-name">NPSP Implementation</div><p class="svc-desc">Full Nonprofit Success Pack setup — donor management, households, affiliations, and gift processing built around your workflow.</p></div>
-      <div class="svc reveal d2" data-tilt><div class="svc-icon">💰</div><div class="svc-name">Donor &amp; Fundraising CRM</div><p class="svc-desc">Track every donor relationship, automate stewardship emails, and run data-driven fundraising campaigns at scale.</p></div>
-      <div class="svc reveal d3" data-tilt><div class="svc-icon">🔗</div><div class="svc-name">Integrations</div><p class="svc-desc">Connect Salesforce to payment platforms, email tools, grant portals, and accounting systems via MuleSoft and REST APIs.</p></div>
-      <div class="svc reveal d1" data-tilt><div class="svc-icon">📊</div><div class="svc-name">Impact Dashboards</div><p class="svc-desc">Custom reports and live dashboards that visualize program outcomes and funding status — board-ready, always up to date.</p></div>
-      <div class="svc reveal d2" data-tilt><div class="svc-icon">🤝</div><div class="svc-name">Volunteer Management</div><p class="svc-desc">Recruit, schedule, and track volunteers all inside Salesforce. No separate tool, no data silos.</p></div>
-      <div class="svc reveal d3" data-tilt><div class="svc-icon">🎓</div><div class="svc-name">Training &amp; Support</div><p class="svc-desc">Hands-on team training and ongoing support to ensure full adoption and confidence across your entire staff.</p></div>
+      <div class="svc reveal d1" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="svc-name">NPSP Implementation</div>
+        <p class="svc-desc">Full Nonprofit Success Pack setup — donor management, households, affiliations and gift processing built around your workflow.</p>
+      </div>
+      <div class="svc reveal d2" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="svc-name">Donor &amp; Fundraising CRM</div>
+        <p class="svc-desc">Track every donor relationship, automate stewardship, and run data-driven fundraising campaigns at scale.</p>
+      </div>
+      <div class="svc reveal d3" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7L12 19"/></svg></div>
+        <div class="svc-name">Integrations</div>
+        <p class="svc-desc">Connect Salesforce to payment platforms, email tools, grant portals and accounting systems via MuleSoft, Boomi and REST APIs.</p>
+      </div>
+      <div class="svc reveal d1" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg></div>
+        <div class="svc-name">Impact Dashboards</div>
+        <p class="svc-desc">Custom reports and live dashboards on Tableau and Salesforce that visualise program outcomes and funding — board-ready, always current.</p>
+      </div>
+      <div class="svc reveal d2" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="svc-name">Volunteer Management</div>
+        <p class="svc-desc">Recruit, schedule and track volunteers inside Salesforce — no separate tool, no data silos.</p>
+      </div>
+      <div class="svc reveal d3" data-tilt>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="svc-name">Training &amp; Support</div>
+        <p class="svc-desc">Hands-on team training and ongoing support so adoption sticks and confidence grows across your whole staff.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -620,26 +478,59 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
   <div class="wrap">
     <div class="why-layout">
       <div class="reveal">
-        <div class="section-tag">Why Choose Us</div>
+        <div class="section-tag">Why choose us</div>
         <h2 class="section-h2">Built for the<br>nonprofit <em>sector</em></h2>
         <div class="pillars">
-          <div class="pillar"><div class="pillar-n">01</div><div class="pillar-body"><div class="pillar-title">Mission-Aligned Pricing</div><p class="pillar-text">Nonprofit-specific tiers, free assessments, and flexible plans designed around charity budgets — not corporate ones.</p></div></div>
-          <div class="pillar"><div class="pillar-n">02</div><div class="pillar-body"><div class="pillar-title">Certified Salesforce Partner</div><p class="pillar-text">Our team of 20+ certified Salesforce professionals has delivered successful implementations across 5+ countries.</p></div></div>
-          <div class="pillar"><div class="pillar-n">03</div><div class="pillar-body"><div class="pillar-title">NPSP Specialists</div><p class="pillar-text">We don't retrofit B2B solutions. Our practice is built from the ground up using Salesforce NPSP and Nonprofit Cloud.</p></div></div>
-          <div class="pillar"><div class="pillar-n">04</div><div class="pillar-body"><div class="pillar-title">Long-Term Partnership</div><p class="pillar-text">We stay post-launch. From training to quarterly reviews, our team grows alongside your organization.</p></div></div>
+          <div class="pillar"><div class="pillar-n">01</div><div><div class="pillar-title">Mission-aligned pricing</div><p class="pillar-text">Free assessments and flexible plans designed around charity budgets, plus help qualifying for Salesforce's nonprofit discounts.</p></div></div>
+          <div class="pillar"><div class="pillar-n">02</div><div><div class="pillar-title">Registered Salesforce Partner</div><p class="pillar-text">A team of 30+ certified professionals delivering successful implementations across North America, Europe and Australia.</p></div></div>
+          <div class="pillar"><div class="pillar-n">03</div><div><div class="pillar-title">NPSP specialists</div><p class="pillar-text">We don't retrofit B2B solutions. Our nonprofit practice is built on Salesforce NPSP and Nonprofit Cloud from the ground up.</p></div></div>
+          <div class="pillar"><div class="pillar-n">04</div><div><div class="pillar-title">Long-term partnership</div><p class="pillar-text">We stay past launch — from training to quarterly reviews, the team grows alongside your organization.</p></div></div>
         </div>
       </div>
       <div class="reveal d2">
         <div class="why-quote-block">
-          <p class="why-quote-text">"We exist because nonprofits deserve the same enterprise-grade technology as Fortune 500 companies — without the Fortune 500 price tag."</p>
-          <div class="why-quote-by"><strong>Saiful Islam</strong> — Founder, Nonprofit Cloud Experts</div>
+          <p class="why-quote-text">"Nonprofits deserve the same enterprise-grade Salesforce as Fortune 500 companies — without the Fortune 500 price tag or the steep learning curve."</p>
+          <div class="why-quote-by"><strong>TwinStack Solutions</strong> — our nonprofit promise</div>
         </div>
         <div class="badges">
-          <span class="badge">Salesforce Consulting Partner</span>
-          <span class="badge">NPSP Certified</span>
-          
-          
-          <span class="badge">10% Pro-Bono Policy</span>
+          <span class="badge">Sales Cloud</span><span class="badge">Service Cloud</span>
+          <span class="badge">Nonprofit Cloud</span><span class="badge">Experience Cloud</span>
+          <span class="badge">MuleSoft</span><span class="badge">Tableau</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="wrap">
+    <div class="founder-layout">
+      <div class="founder-photo-wrap reveal">
+        <div class="founder-photo-circle">
+          <img src="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_220,h_220,c_fill,g_face/v1775825926/Untitled_design_1_fgdzai_fhblzd.webp"
+            alt="Saiful Islam, Salesforce System Architect at TwinStack Solutions"
+            width="220" height="220" loading="lazy" decoding="async">
+        </div>
+        <div class="founder-cert-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+          System Architect · Mountaineer
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="section-tag">Your Salesforce architect</div>
+        <h2 class="section-h2">Meet <em>Saiful Islam</em></h2>
+        <div class="founder-stats">
+          <div class="fstat"><div class="fstat-num"><span class="counter" data-target="12" data-suffix="+">0+</span></div><div class="fstat-label">Years of experience</div></div>
+          <div class="fstat"><div class="fstat-num"><span class="counter" data-target="9" data-suffix="">0</span></div><div class="fstat-label">Salesforce certifications</div></div>
+          <div class="fstat"><div class="fstat-num"><span class="counter" data-target="34" data-suffix="">0</span></div><div class="fstat-label">Trailhead badges</div></div>
+        </div>
+        <p class="founder-body">Saiful is a certified Salesforce System Architect and the technical lead at TwinStack Solutions. Over more than a decade in the ecosystem, he has guided projects from feasibility and architecture through development, security review and go-live. He holds nine Salesforce certifications, including both the System Architect and Application Architect domain credentials, and leads a team of 30+ specialists serving clients across three continents.</p>
+        <p class="founder-body" style="font-style:italic;color:var(--text);border-left:3px solid var(--blue-md);padding-left:18px;">"We don't just configure software — we navigate the whole journey with you, from your first data model to the day your team logs in and never looks back."</p>
+        <div class="founder-links">
+          <a class="founder-link" href="https://www.linkedin.com/in/saiful-neo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 17.34V10.5H6.06v6.84h2.28zM7.2 9.46a1.32 1.32 0 100-2.64 1.32 1.32 0 000 2.64zM18 17.34v-3.75c0-2-.43-3.54-2.77-3.54a2.43 2.43 0 00-2.19 1.2h-.03V10.5H10.8v6.84h2.28v-3.39c0-.9.17-1.76 1.28-1.76s1.1 1.02 1.1 1.82v3.33H18z"/></svg>LinkedIn</a>
+          <a class="founder-link" href="https://www.salesforce.com/trailblazer/sineo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 20l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>Trailblazer profile</a>
+          <a class="founder-link" href="https://www.twinstack.net/saiful-islam" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>Full profile</a>
         </div>
       </div>
     </div>
@@ -650,61 +541,94 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
 <section class="process" id="process">
   <div class="wrap">
     <div class="process-head reveal">
-      <div class="section-tag">How It Works</div>
-      <h2 class="section-h2">From discovery<br>to <em>going live</em></h2>
-      <p class="section-p" style="margin-top:12px">A clear four-step process that gets your Salesforce running without disrupting day-to-day operations.</p>
+      <div class="section-tag">How it works</div>
+      <h2 class="section-h2">From discovery to <em>going live</em></h2>
+      <p class="section-p" style="margin-top:12px">A clear four-step process that gets Salesforce running without disrupting day-to-day operations.</p>
     </div>
     <div class="steps" id="steps">
-      <div class="step reveal d1"><div class="step-dot">🔍<div class="step-num-badge">1</div></div><div class="step-title">Free Assessment</div><p class="step-text">We audit your tools, data, and processes — then map a Salesforce strategy tailored to your organization at zero cost.</p></div>
-      <div class="step reveal d2"><div class="step-dot">🗺️<div class="step-num-badge">2</div></div><div class="step-title">Solution Design</div><p class="step-text">Our architects design your environment — data model, flows, integrations, and user roles built around your mission.</p></div>
-      <div class="step reveal d3"><div class="step-dot">⚙️<div class="step-num-badge">3</div></div><div class="step-title">Build &amp; Configure</div><p class="step-text">We build using Apex, LWC, Flow, and NPSP with agile sprints and continuous feedback keeping you in control.</p></div>
-      <div class="step reveal d4"><div class="step-dot">🚀<div class="step-num-badge">4</div></div><div class="step-title">Launch &amp; Grow</div><p class="step-text">Training, go-live support, and an ongoing partnership ensuring adoption and continuous improvement.</p></div>
+      <div class="step reveal d1"><div class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><div class="step-num-badge">1</div></div><div class="step-title">Free assessment</div><p class="step-text">We audit your tools, data and processes, then map a Salesforce strategy tailored to your organization — at zero cost.</p></div>
+      <div class="step reveal d2"><div class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg><div class="step-num-badge">2</div></div><div class="step-title">Solution design</div><p class="step-text">Our architects design your environment — data model, flows, integrations and user roles built around your mission.</p></div>
+      <div class="step reveal d3"><div class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><div class="step-num-badge">3</div></div><div class="step-title">Build &amp; configure</div><p class="step-text">We build using Apex, LWC, Flow and NPSP in agile sprints, with continuous feedback keeping you in control.</p></div>
+      <div class="step reveal d4"><div class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><div class="step-num-badge">4</div></div><div class="step-title">Launch &amp; grow</div><p class="step-text">Training, go-live support and an ongoing partnership ensuring adoption and continuous improvement.</p></div>
     </div>
   </div>
 </section>
 
-<!-- IMPACT -->
+<!-- IMPACT / WORK -->
 <section class="impact" id="impact">
   <div class="wrap">
     <div class="impact-head">
-      <div class="reveal"><div class="section-tag">Real Impact</div><h2 class="section-h2">Stories of<br><em>transformation</em></h2></div>
-      <p class="section-p reveal d2">Every implementation is a chance to multiply the good your organization does. Here's what that looks like in practice.</p>
+      <div class="reveal"><div class="section-tag">Selected work</div><h2 class="section-h2">Delivered across<br><em>sectors</em></h2></div>
+      <p class="section-p reveal d2">A sample of implementations delivered for nonprofit, financial services, education, agribusiness and travel clients across three continents.</p>
     </div>
-    <div class="impact-grid reveal">
-      <div class="ic span2">
+    <div class="work-grid">
+      <div class="work-card feature reveal">
         <div>
-          <div class="ic-tag">Featured · Healthcare NGO</div>
-          <div class="ic-org">Victory Disability Services</div>
-          <p class="ic-text">A disability support charity managing 1,200 beneficiaries struggled with spreadsheet chaos and missed follow-ups. Our team implemented a full NPSP environment with volunteer coordination and impact reporting.</p>
-          <div class="ic-nums">
-            <div><div class="ic-num-val counter" data-target="3" data-suffix="×">0×</div><div class="ic-num-label">Faster Reporting</div></div>
-            <div><div class="ic-num-val counter" data-target="68" data-suffix="%">0%</div><div class="ic-num-label">Admin Time Saved</div></div>
-            <div><div class="ic-num-val counter" data-target="1.2" data-suffix="k" data-decimal="1">0k</div><div class="ic-num-label">Beneficiaries Tracked</div></div>
+          <div class="work-tag">Featured · Disability support nonprofit</div>
+          <div class="work-org">Victory Disability</div>
+          <p class="work-text">A disability-support organization needed a reliable way to capture and route enquiries. We implemented lead assignment, workflow enhancements and external lead management with real-time synchronisation — so no request slips through.</p>
+          <div class="work-nums">
+            <div><div class="work-num-val">Real-time</div><div class="work-num-label">Lead sync</div></div>
+            <div><div class="work-num-val">End-to-end</div><div class="work-num-label">Workflow automation</div></div>
           </div>
         </div>
-        <div class="ic-quote">
-          <p class="ic-quote-text">"They didn't just implement Salesforce — they understood our mission. Now our team spends less time on data entry and more time helping people who need us."</p>
-          <div class="ic-quote-author">Sarah Mitchell</div>
-          <div class="ic-quote-role">Operations Director, Victory Disability</div>
+        <div class="feature-aside">
+          <h4>What we delivered</h4>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Automated lead assignment rules</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>External lead capture &amp; sync</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Workflow enhancements across teams</li>
+          </ul>
         </div>
       </div>
-      <div class="ic">
-        <div class="ic-tag">Education · Bangladesh</div>
-        <div class="ic-org">EduReach Foundation</div>
-        <p class="ic-text">Donor retention improved from 42% to 79% after deploying automated stewardship journeys and a self-service donor portal on Experience Cloud.</p>
-        <div class="ic-nums" style="margin-top:20px">
-          <div><div class="ic-num-val counter" data-target="79" data-suffix="%">0%</div><div class="ic-num-label">Donor Retention</div></div>
-          <div><div class="ic-num-val counter" data-target="2.1" data-suffix="×" data-decimal="1">0×</div><div class="ic-num-label">Gift Frequency</div></div>
-        </div>
+      <div class="work-card reveal d1">
+        <div class="work-tag">Education</div>
+        <div class="work-org">Online learning provider</div>
+        <p class="work-text">Built automation, reports and dashboards to streamline student processes and support data-driven decisions across the organization.</p>
       </div>
-      <div class="ic">
-        <div class="ic-tag">Environment · South Asia</div>
-        <div class="ic-org">GreenEarth Initiative</div>
-        <p class="ic-text">Volunteer program scaled from 200 to 900 active members in 6 months after deploying Salesforce Volunteer Management with mobile check-in.</p>
-        <div class="ic-nums" style="margin-top:20px">
-          <div><div class="ic-num-val counter" data-target="900" data-suffix="+">0+</div><div class="ic-num-label">Active Volunteers</div></div>
-          <div><div class="ic-num-val counter" data-target="4.5" data-suffix="×" data-decimal="1">0×</div><div class="ic-num-label">Growth in 6 Months</div></div>
+      <div class="work-card reveal d2">
+        <div class="work-tag">Financial services</div>
+        <div class="work-org">Mortgage operations</div>
+        <p class="work-text">Loan application forms, workflow automation and email notification processes built natively on Salesforce for a lending team.</p>
+      </div>
+      <div class="work-card reveal d3">
+        <div class="work-tag">Agribusiness</div>
+        <div class="work-org">Commodity trading</div>
+        <p class="work-text">An Experience Cloud trading marketplace with bid/offer management, workflow automation and Marketing Cloud communications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="testimonials">
+  <div class="wrap">
+    <div class="testi-head reveal">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-h2">Trusted by clients <em>worldwide</em></h2>
+      <p class="section-p" style="margin-top:12px">Real words from organizations we've worked with across the United States.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal d1">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
         </div>
+        <p class="tcard-quote">"Saiful was very professional, personable and helped with our needs within our time constraints. I would recommend him for more projects."</p>
+        <div class="tcard-meta"><div class="tcard-avatar">ED</div><div class="tcard-who"><b>Education</b><span>United States · 39-month engagement</span></div></div>
+      </div>
+      <div class="tcard reveal d2">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
+        </div>
+        <p class="tcard-quote">"Saiful and his team have been great to work with. Can't say enough good things about them. Very happy and want to continue our relationship."</p>
+        <div class="tcard-meta"><div class="tcard-avatar">FS</div><div class="tcard-who"><b>Financial Services</b><span>United States · 19-month engagement</span></div></div>
+      </div>
+      <div class="tcard reveal d3">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
+        </div>
+        <p class="tcard-quote">"Saiful and his team are amazing! They are my go-to team — always responsive and great at execution. Highly recommend!"</p>
+        <div class="tcard-meta"><div class="tcard-avatar">HL</div><div class="tcard-who"><b>Healthcare &amp; Life Sciences</b><span>United States · 16-month engagement</span></div></div>
       </div>
     </div>
   </div>
@@ -721,49 +645,107 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
       </div>
       <div class="faq-list reveal d2">
         <div class="faq-item open">
-          <button class="faq-q" onclick="toggleFaq(this)">Do we need to already have Salesforce?<span class="faq-chevron">+</span></button>
-          <div class="faq-a">No — we handle everything from scratch, including helping you apply for Salesforce's Power of Us program which gives eligible nonprofits 10 free licenses. If you already have Salesforce, we can audit and improve your existing setup.</div>
+          <button class="faq-q" aria-expanded="true">Do we need to already have Salesforce?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
+          <div class="faq-a">No — we handle everything from scratch, including helping you apply for Salesforce's Power of Us program, which gives eligible nonprofits 10 free licenses. If you already have Salesforce, we can audit and improve your existing setup.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">What is the Salesforce Power of Us program?<span class="faq-chevron">+</span></button>
+          <button class="faq-q" aria-expanded="false">What is the Salesforce Power of Us program?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
           <div class="faq-a">Salesforce.org's Power of Us program provides registered nonprofits with 10 free Salesforce licenses and deep discounts on additional licenses. We help eligible organizations apply and qualify, significantly reducing your technology costs.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">How long does implementation take?<span class="faq-chevron">+</span></button>
-          <div class="faq-a">A basic setup takes 3–4 weeks. A full growth implementation runs 6–10 weeks. Enterprise engagements are scoped individually but typically 10–20 weeks. All timelines include data migration, configuration, testing, and training.</div>
+          <button class="faq-q" aria-expanded="false">How long does implementation take?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
+          <div class="faq-a">A basic setup takes 3–4 weeks. A full growth implementation runs 6–10 weeks. Enterprise engagements are scoped individually but typically 10–20 weeks. All timelines include data migration, configuration, testing and training.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">Can you migrate data from Excel, HubSpot, or other CRMs?<span class="faq-chevron">+</span></button>
-          <div class="faq-a">Yes. We handle migration from spreadsheets, legacy CRMs (HubSpot, Zoho, NationBuilder), and custom databases. Our process covers audit, field mapping, cleansing, and validated import with zero data loss.</div>
+          <button class="faq-q" aria-expanded="false">Can you migrate data from Excel, HubSpot or other CRMs?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
+          <div class="faq-a">Yes. We migrate from spreadsheets, legacy CRMs (HubSpot, Zoho, NationBuilder) and custom databases. Our process covers audit, field mapping, cleansing and validated import with zero data loss.</div>
         </div>
-        
         <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">Do you offer ongoing support after launch?<span class="faq-chevron">+</span></button>
-          <div class="faq-a">Yes. All engagements include post-launch support. We also offer flexible monthly retainers for ongoing development, admin support, or training as your needs evolve.</div>
+          <button class="faq-q" aria-expanded="false">Where is your team based?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
+          <div class="faq-a">TwinStack Solutions is based in Dhaka, Bangladesh, with a team of 30+ certified Salesforce specialists. We work with nonprofits and businesses across North America, Europe and Australia, adapting to your time zone for meetings and support.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do you offer ongoing support after launch?<span class="faq-chevron"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg></span></button>
+          <div class="faq-a">Yes. All engagements include post-launch support. We also offer flexible monthly retainers for ongoing development, admin support or training as your needs evolve.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="cta-orb cta-orb-1"></div>
-  <div class="cta-orb cta-orb-2"></div>
-  <div class="cta-inner reveal">
-    <h2 class="cta-h2">Ready to power your mission<br>with Salesforce?</h2>
-    <p class="cta-p">Book a free, no-obligation assessment. We'll review your setup, understand your goals, and give you a clear roadmap — at zero cost.</p>
-    <div class="cta-actions">
-      <a href="mailto:saiful@twinstack.net" class="btn-white">
-        Book Free Assessment
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="https://wa.me/8801556777043" class="btn-outline-white" target="_blank" rel="noopener">
-        WhatsApp Us
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-orb contact-orb-1"></div>
+  <div class="contact-orb contact-orb-2"></div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="contact-tag"><span style="width:6px;height:6px;background:#fff;border-radius:50%;display:inline-block"></span>Let's talk</div>
+        <h2 class="contact-h2">Power your mission<br>with <em>Salesforce</em></h2>
+        <p class="contact-p">Tell us about your organization and we'll come back with a clear, no-obligation roadmap — usually within 24 hours. Prefer to talk first? Reach us directly below.</p>
+        <div class="contact-methods">
+          <a class="cmethod" href="mailto:saiful@twinstack.net">
+            <span class="cmethod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
+            <span class="cmethod-val">saiful@twinstack.net</span>
+          </a>
+          <a class="cmethod" href="https://wa.me/8801556777043" target="_blank" rel="noopener">
+            <span class="cmethod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+            <span class="cmethod-val">+880 1556-777043</span>
+          </a>
+          <a class="cmethod" href="https://calendar.app.google/HP3LiuNFisCt6xLo6" target="_blank" rel="noopener">
+            <span class="cmethod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <span class="cmethod-val">Book a free 30-min call</span>
+          </a>
+        </div>
+        <p class="contact-meta"><strong>TwinStack Solutions</strong> · Mirpur, Dhaka, Bangladesh<br>Registered Salesforce Partner since 2018 · 30+ certified specialists<br>Serving nonprofits across North America, Europe &amp; Australia.</p>
+      </div>
+
+      <div class="contact-card reveal d2">
+        <h3>Send us a message</h3>
+        <p class="sub">Fields marked <span style="color:var(--blue)">*</span> are required. We'll reply within one business day.</p>
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000roILE" method="POST">
+          <input type="hidden" name="oid" value="00DdN00000roILE">
+          <input type="hidden" name="retURL" value="https://www.twinstack.net/">
+          <input type="hidden" name="lead_source" value="NPC_US">
+          <div class="field-row">
+            <div class="field">
+              <label for="first_name">First name <span class="req">*</span></label>
+              <input id="first_name" name="first_name" type="text" maxlength="40" placeholder="Jane" required>
+            </div>
+            <div class="field">
+              <label for="last_name">Last name <span class="req">*</span></label>
+              <input id="last_name" name="last_name" type="text" maxlength="80" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" maxlength="80" placeholder="jane@yournonprofit.org" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" maxlength="40" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label for="company">Organization</label>
+              <input id="company" name="company" type="text" maxlength="40" placeholder="Your nonprofit">
+            </div>
+          </div>
+          <div class="field">
+            <label for="url">Website</label>
+            <input id="url" name="url" type="url" maxlength="80" placeholder="https://">
+          </div>
+          <div class="field">
+            <label for="description">How can we help?</label>
+            <textarea id="description" name="description" placeholder="Tell us about your current setup and what you'd like to achieve."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="form-note">By submitting, you agree to be contacted by TwinStack Solutions about your enquiry.</p>
+        </form>
+      </div>
     </div>
-    <div class="cta-note">Free assessment · No commitment · Response within 24 hours</div>
   </div>
 </section>
 
@@ -771,17 +753,11 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
 <footer>
   <div class="footer-top">
     <div>
-      <a href="#" class="nav-logo" style="text-decoration:none">
-        <div class="nav-logo-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Salesforce-style cloud: bumpy top, flat-ish bottom -->
-  <path d="M25.5 13.5c0-.17-.01-.34-.02-.5A5 5 0 0 0 21 8a5 5 0 0 0-2.5.67A6 6 0 0 0 7.2 12.1 4.5 4.5 0 0 0 8 21h17a4.5 4.5 0 0 0 .5-8.5z" fill="white"/>
-  <!-- Heart inside the cloud -->
-  <path d="M16 18.2l-4.1-4.1a2.3 2.3 0 0 1 3.25-3.25L16 11.7l.85-.85a2.3 2.3 0 0 1 3.25 3.25L16 18.2z" fill="#0176D3"/>
-</svg></div>
-        <span class="nav-logo-name">Nonprofit <span>Cloud Experts</span></span>
+      <a href="#hero" class="footer-logo">
+        <img src="https://res.cloudinary.com/du42kbmmn/image/upload/f_auto,q_auto,w_140/v1781260912/Untitled_design_4_so832c.png" alt="TwinStack Solutions logo" width="34" height="32" loading="lazy" decoding="async">
+        <span class="footer-logo-name">Nonprofit <span>Cloud Experts</span></span>
       </a>
-      <p class="footer-brand-p">Nonprofit Cloud & Salesforce experts for charities and NGOs. Certified Salesforce Consulting Partner since 2022.</p>
-      
+      <p class="footer-brand-p">A division of TwinStack Solutions — empowering charities and businesses with Salesforce excellence since 2018. Based in Dhaka, Bangladesh; serving clients worldwide.</p>
     </div>
     <div>
       <div class="footer-col-h">Services</div>
@@ -794,247 +770,166 @@ footer{padding:60px 64px 36px;border-top:1px solid var(--border);background:var(
     <div>
       <div class="footer-col-h">Company</div>
       <ul class="footer-links">
-        <li><a href="#why">About Us</a></li><li><a href="#impact">Case Studies</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#why">Why Us</a></li><li><a href="#founder">Our Architect</a></li>
+        <li><a href="#impact">Selected Work</a></li><li><a href="#faq">FAQ</a></li>
+        <li><a href="https://www.twinstack.net/" target="_blank" rel="noopener">TwinStack.net</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-h">Contact</div>
       <ul class="footer-links">
         <li><a href="mailto:saiful@twinstack.net">saiful@twinstack.net</a></li>
-        <li><a href="https://wa.me/8801556777043">WhatsApp</a></li>
-        
-        <li><a href="#">Mirpur-12, Dhaka</a></li>
+        <li><a href="https://wa.me/8801556777043" target="_blank" rel="noopener">WhatsApp +880 1556-777043</a></li>
+        <li><a href="https://calendar.app.google/HP3LiuNFisCt6xLo6" target="_blank" rel="noopener">Book a call</a></li>
+        <li><a href="#contact">Mirpur, Dhaka, Bangladesh</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 Nonprofit Cloud Experts. All rights reserved.</p>
+    <p class="footer-copy">© 2026 TwinStack Solutions. All rights reserved.</p>
     <div class="socials">
-      <a href="#" class="soc">f</a>
-      <a href="#" class="soc">in</a>
-      <a href="#" class="soc">▶</a>
+      <a href="https://www.linkedin.com/company/twinforce-solutions" class="soc" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 17.34V10.5H6.06v6.84h2.28zM7.2 9.46a1.32 1.32 0 100-2.64 1.32 1.32 0 000 2.64zM18 17.34v-3.75c0-2-.43-3.54-2.77-3.54a2.43 2.43 0 00-2.19 1.2h-.03V10.5H10.8v6.84h2.28v-3.39c0-.9.17-1.76 1.28-1.76s1.1 1.02 1.1 1.82v3.33H18z"/></svg></a>
+      <a href="https://www.youtube.com/@TwinStackSolutions-sf" class="soc" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.46-5.17a2.78 2.78 0 00-1.94-1.94C18.88 4.43 12 4.43 12 4.43s-6.88 0-8.6.46A2.78 2.78 0 001.46 6.83C1 8.5 1 12 1 12s0 3.5.46 5.17a2.78 2.78 0 001.94 1.94c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.94C23 15.5 23 12 23 12zM9.75 15.5v-7l6 3.5z"/></svg></a>
+      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=f020d7cb-6467-4dcc-adda-c1ce6c620257" class="soc" target="_blank" rel="noopener" aria-label="AppExchange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></a>
     </div>
   </div>
 </footer>
 
 <script>
-/* ── All JS deferred — runs after parse ── */
 (function(){
   'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── 1. SCROLL PROGRESS BAR ── */
-  const bar = document.getElementById('progress-bar');
-  function updateBar(){
-    const s = document.documentElement;
-    const pct = (s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
-    bar.style.width = pct+'%';
-  }
+  var bar = document.getElementById('progress-bar');
+  function updateBar(){ var s = document.documentElement; bar.style.width = (s.scrollTop/(s.scrollHeight-s.clientHeight)*100)+'%'; }
 
-  /* ── 2. NAV SCROLL + ACTIVE SECTION ── */
-  const nav = document.getElementById('nav');
-  const sections = ['services','why','impact','faq','contact'];
-  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+  var nav = document.getElementById('nav');
+  var sections = ['services','why','founder','impact','faq','contact'];
+  var navLinks = document.querySelectorAll('.nav-links a[data-section]');
   function updateNav(){
-    nav.classList.toggle('scrolled', scrollY > 40);
-    // Active link
-    let current = '';
-    sections.forEach(id=>{
-      const el = document.getElementById(id);
-      if(el && el.getBoundingClientRect().top <= 100) current = id;
-    });
-    navLinks.forEach(a=>{
-      a.classList.toggle('active', a.dataset.section === current);
-    });
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    var current = '';
+    sections.forEach(function(id){ var el = document.getElementById(id); if(el && el.getBoundingClientRect().top <= 120) current = id; });
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.dataset.section === current); });
   }
 
-  /* ── 3. HERO MOUSE PARALLAX + SPOTLIGHT ── */
-  const hero = document.getElementById('hero');
-  const orb1 = document.getElementById('orb1');
-  const orb2 = document.getElementById('orb2');
-  const dashCard = document.getElementById('dash-card');
-  let heroRect, rafPending = false;
-  function onHeroMove(e){
-    if(!heroRect) heroRect = hero.getBoundingClientRect();
-    if(rafPending) return;
-    rafPending = true;
-    requestAnimationFrame(()=>{
-      rafPending = false;
-      const x = e.clientX - heroRect.left;
-      const y = e.clientY - heroRect.top;
-      const cx = heroRect.width/2, cy = heroRect.height/2;
-      const dx = (x-cx)/cx, dy = (y-cy)/cy;
-      // Spotlight
-      hero.style.setProperty('--mx', (x/heroRect.width*100)+'%');
-      hero.style.setProperty('--my', (y/heroRect.height*100)+'%');
-      // Orbs parallax
-      orb1.style.transform = `translate(${dx*-18}px,${dy*-12}px)`;
-      orb2.style.transform = `translate(${dx*12}px,${dy*8}px)`;
-      // Card 3D tilt
-      const tiltX = dy * 6, tiltY = dx * -6;
-      dashCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(8px)`;
+  var toggle = document.getElementById('nav-toggle');
+  var links = document.getElementById('nav-links');
+  toggle.addEventListener('click', function(){ var open = links.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); });
+  links.addEventListener('click', function(e){ if(e.target.tagName === 'A'){ links.classList.remove('open'); toggle.setAttribute('aria-expanded', false); } });
+
+  var hero = document.getElementById('hero');
+  var orb1 = document.getElementById('orb1'), orb2 = document.getElementById('orb2');
+  var visual = document.getElementById('hero-visual');
+  var dashCard = document.getElementById('dash-card');
+  if(!reduce && window.matchMedia('(hover:hover)').matches){
+    var heroRect, pending = false;
+    hero.addEventListener('mousemove', function(e){
+      if(!heroRect) heroRect = hero.getBoundingClientRect();
+      if(pending) return; pending = true;
+      requestAnimationFrame(function(){
+        pending = false;
+        var x = e.clientX - heroRect.left, y = e.clientY - heroRect.top;
+        var dx = (x-heroRect.width/2)/(heroRect.width/2), dy = (y-heroRect.height/2)/(heroRect.height/2);
+        hero.style.setProperty('--mx', (x/heroRect.width*100)+'%');
+        hero.style.setProperty('--my', (y/heroRect.height*100)+'%');
+        orb1.style.transform = 'translate('+(dx*-18)+'px,'+(dy*-12)+'px)';
+        orb2.style.transform = 'translate('+(dx*12)+'px,'+(dy*8)+'px)';
+        if(visual) visual.style.transform = 'rotateX('+(dy*4)+'deg) rotateY('+(dx*-4)+'deg)';
+        if(dashCard) dashCard.style.transform = 'translateZ(30px) rotateX('+(dy*4)+'deg) rotateY('+(dx*-4)+'deg)';
+      });
+    }, {passive:true});
+    hero.addEventListener('mouseleave', function(){
+      if(visual) visual.style.transform = '';
+      if(dashCard) dashCard.style.transform = '';
+      orb1.style.transform = 'translate(0,0)'; orb2.style.transform = 'translate(0,0)';
+      heroRect = null;
     });
+
+    document.querySelectorAll('[data-tilt]').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX-r.left)/r.width - .5, y = (e.clientY-r.top)/r.height - .5;
+        card.style.setProperty('--rx', ((e.clientX-r.left)/r.width*100)+'%');
+        card.style.setProperty('--ry', ((e.clientY-r.top)/r.height*100)+'%');
+        card.style.transform = 'perspective(600px) rotateX('+(y*-7)+'deg) rotateY('+(x*7)+'deg) translateZ(4px)';
+      }, {passive:true});
+      card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+    });
+
+    document.querySelectorAll('.btn-blue,.nav-btn,.form-submit').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        btn.style.transform = 'translate('+((e.clientX-r.left-r.width/2)*.16)+'px,'+((e.clientY-r.top-r.height/2)*.16)+'px)';
+      }, {passive:true});
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+
+    var contact = document.querySelector('.contact');
+    if(contact) contact.addEventListener('mousemove', function(e){
+      var r = contact.getBoundingClientRect();
+      contact.style.setProperty('--cx', (e.clientX-r.left)+'px');
+      contact.style.setProperty('--cy', (e.clientY-r.top)+'px');
+    }, {passive:true});
   }
-  function onHeroLeave(){
-    dashCard.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
-    orb1.style.transform = 'translate(0,0)';
-    orb2.style.transform = 'translate(0,0)';
+
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); revealObs.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+  var stepsEl = document.getElementById('steps');
+  if(stepsEl){
+    var stepsObs = new IntersectionObserver(function(entries){ if(entries[0].isIntersecting){ stepsEl.classList.add('on'); stepsObs.disconnect(); } }, {threshold:.3});
+    stepsObs.observe(stepsEl);
   }
-  hero.addEventListener('mousemove', onHeroMove, {passive:true});
-  hero.addEventListener('mouseleave', onHeroLeave);
 
-  /* ── 4. SERVICE CARD 3D TILT ── */
-  document.querySelectorAll('[data-tilt]').forEach(card=>{
-    card.addEventListener('mousemove', e=>{
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX-r.left)/r.width - .5;
-      const y = (e.clientY-r.top)/r.height - .5;
-      card.style.transform = `perspective(600px) rotateX(${y*-7}deg) rotateY(${x*7}deg) translateZ(4px)`;
-    },{passive:true});
-    card.addEventListener('mouseleave',()=>{
-      card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateZ(0)';
-    });
-  });
-
-  /* ── 5. MAGNETIC BUTTONS ── */
-  document.querySelectorAll('.btn-blue,.btn-white,.nav-btn').forEach(btn=>{
-    btn.addEventListener('mousemove', e=>{
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width/2;
-      const y = e.clientY - r.top - r.height/2;
-      btn.style.transform = `translate(${x*.18}px,${y*.18}px)`;
-    },{passive:true});
-    btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
-  });
-
-  /* ── 6. CTA MOUSE GLOW ── */
-  const cta = document.querySelector('.cta-section');
-  cta.addEventListener('mousemove', e=>{
-    const r = cta.getBoundingClientRect();
-    cta.style.setProperty('--cx', (e.clientX-r.left)+'px');
-    cta.style.setProperty('--cy', (e.clientY-r.top)+'px');
-  },{passive:true});
-
-  /* ── 7. SCROLL REVEAL ── */
-  const revealObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('on'); revealObs.unobserve(e.target); }
-    });
-  },{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
-
-  /* ── 8. PROCESS LINE ANIMATION ── */
-  const stepsEl = document.getElementById('steps');
-  const stepsObs = new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){ stepsEl.classList.add('on'); stepsObs.disconnect(); }
-  },{threshold:.3});
-  stepsObs.observe(stepsEl);
-
-  /* ── 9. COUNTER ANIMATION ── */
   function animateCount(el){
-    const target = parseFloat(el.dataset.target);
-    const suffix = el.dataset.suffix||'';
-    const dec = parseInt(el.dataset.decimal||0);
-    const dur = 1400, start = performance.now();
+    var target = parseFloat(el.dataset.target);
+    if(isNaN(target)){ return; }
+    var suffix = el.dataset.suffix || '';
+    var dec = parseInt(el.dataset.decimal || 0, 10);
+    if(reduce){ el.textContent = (dec ? target.toFixed(dec) : Math.round(target)) + suffix; return; }
+    var dur = 1300, start = performance.now();
     function step(now){
-      const p = Math.min((now-start)/dur,1);
-      const ease = 1-Math.pow(1-p,3); // ease-out-cubic
-      const val = target*ease;
+      var p = Math.min((now-start)/dur, 1);
+      var val = target * (1 - Math.pow(1-p, 3));
       el.textContent = (dec ? val.toFixed(dec) : Math.floor(val)) + suffix;
-      if(p<1) requestAnimationFrame(step);
+      if(p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
-  const counterObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.querySelectorAll('.counter,[data-count]').forEach(el=>{
-          if(el.dataset.count) el.dataset.target=el.dataset.count;
-          if(el.dataset.suffix) animateCount(el);
-        });
-        // hero proof counters
-        document.querySelectorAll('.proof-num[data-count]').forEach(el=>{
-          el.dataset.target = el.dataset.count;
-          animateCount(el);
-        });
-        counterObs.disconnect();
-      }
-    });
-  },{threshold:.4});
-  const impactSection = document.getElementById('impact');
-  if(impactSection) counterObs.observe(impactSection);
+  var countObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ animateCount(e.target); countObs.unobserve(e.target); } });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-target]').forEach(function(el){ countObs.observe(el); });
 
-  // Hero proof counters — fire after hero animations complete
-  setTimeout(()=>{
-    document.querySelectorAll('.proof-num[data-count]').forEach(animateCount);
-  }, 900);
-
-  /* ── 10. WORD-BY-WORD H1 REVEAL ── */
-  const h1 = document.getElementById('hero-h1');
-  if(h1){
-    const html = h1.innerHTML;
-    // Split text nodes only, preserve <em> intact
-    const frag = document.createDocumentFragment();
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    let delay = 0.15;
-    tmp.childNodes.forEach(node=>{
-      if(node.nodeType===3){ // text
-        node.textContent.split(/(\s+)/).forEach(part=>{
-          if(part.trim()){
-            const span = document.createElement('span');
-            span.className='word';
-            span.style.animationDelay = delay+'s';
-            span.textContent = part;
-            frag.appendChild(span);
-            frag.appendChild(document.createTextNode(' '));
-            delay += 0.07;
-          }
+  var h1 = document.getElementById('hero-h1');
+  if(h1 && !reduce){
+    var tmp = document.createElement('div'); tmp.innerHTML = h1.innerHTML;
+    var frag = document.createDocumentFragment(); var delay = 0.12;
+    tmp.childNodes.forEach(function(node){
+      if(node.nodeType === 3){
+        node.textContent.split(/(\s+)/).forEach(function(part){
+          if(part.trim()){ var s = document.createElement('span'); s.className='word'; s.style.animationDelay=delay+'s'; s.textContent=part; frag.appendChild(s); frag.appendChild(document.createTextNode(' ')); delay+=0.06; }
         });
-      } else {
-        // <em> or other element — wrap as one word
-        const span = document.createElement('span');
-        span.className='word';
-        span.style.animationDelay = delay+'s';
-        span.appendChild(node.cloneNode(true));
-        frag.appendChild(span);
-        frag.appendChild(document.createTextNode(' '));
-        delay += 0.07;
-      }
+      } else { var s2 = document.createElement('span'); s2.className='word'; s2.style.animationDelay=delay+'s'; s2.appendChild(node.cloneNode(true)); frag.appendChild(s2); frag.appendChild(document.createTextNode(' ')); delay+=0.06; }
     });
-    h1.innerHTML='';
-    h1.appendChild(frag);
+    h1.innerHTML=''; h1.appendChild(frag);
   }
 
-  /* ── 11. PASSIVE SCROLL LISTENER (batched) ── */
-  let scrollRaf = false;
-  window.addEventListener('scroll',()=>{
-    if(scrollRaf) return;
-    scrollRaf = true;
-    requestAnimationFrame(()=>{
-      updateBar();
-      updateNav();
-      scrollRaf = false;
-    });
-  },{passive:true});
+  var scrollRaf = false;
+  window.addEventListener('scroll', function(){ if(scrollRaf) return; scrollRaf = true; requestAnimationFrame(function(){ updateBar(); updateNav(); scrollRaf = false; }); }, {passive:true});
 
-  /* ── 12. FAQ ── */
-  window.toggleFaq = function(btn){
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>{
-      i.classList.remove('open');
-      i.querySelector('.faq-chevron').textContent='+';
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement; var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded', false); });
+      if(!isOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded', true); }
     });
-    if(!isOpen){
-      item.classList.add('open');
-      btn.querySelector('.faq-chevron').textContent='+';
-    }
-  };
+  });
 
-  /* Init */
-  updateBar();
-  updateNav();
+  updateBar(); updateNav();
 })();
 </script>
 </body>
