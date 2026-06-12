@@ -33,7 +33,7 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :root{
   --blue:#0176D3;--blue-dk:#014486;--blue-lt:#E8F4FD;--blue-md:#C8E3F8;
-  --text:#0A0A0A;--text-mid:#444;--text-soft:#777;
+  --text:#0A0A0A;--text-mid:#444;--text-soft:#595959;
   --border:#E5E5E5;--bg:#fff;--bg-soft:#F7F9FC;--green:#2E844A;--green-lt:#EBF9F1;
   --sora:'Sora',system-ui,-apple-system,sans-serif;--lora:'Lora',Georgia,serif;
   --ease:cubic-bezier(.4,0,.2,1);
@@ -42,7 +42,9 @@ body{font-family:var(--sora);background:var(--bg);color:var(--text);overflow-x:h
 img{display:block;max-width:100%}
 .wrap{max-width:1200px;margin:0 auto}
 
-/* ───────── SCROLL PROGRESS ───────── */
+/* ───────── SKIP LINK ───────── */
+.skip-link{position:absolute;top:-60px;left:20px;background:var(--blue);color:#fff;padding:10px 18px;border-radius:6px;font-size:.86rem;font-weight:500;text-decoration:none;z-index:999;transition:top .2s}
+.skip-link:focus{top:12px}
 #progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--blue);z-index:200;will-change:width}
 
 /* ───────── NAV ───────── */
@@ -122,7 +124,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 /* ───────── TRUST STRIP ───────── */
 .trust{padding:30px clamp(20px,5vw,64px);border-bottom:1px solid var(--border);background:var(--bg-soft)}
 .trust-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.trust-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-soft);white-space:nowrap}
+.trust-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#595959;white-space:nowrap}
 .trust-items{display:flex;gap:14px;flex-wrap:wrap}
 .trust-pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:.76rem;color:var(--text-mid);transition:border-color .2s,color .2s,transform .15s}
 .trust-pill:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
@@ -222,7 +224,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .work-num-val{font-family:var(--lora);font-size:1.6rem;font-weight:500;color:var(--blue);line-height:1;margin-bottom:4px}
 .work-num-label{font-size:.66rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.04em}
 .feature-aside{background:var(--bg-soft);border-radius:12px;padding:28px}
-.feature-aside h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);margin-bottom:16px;font-weight:500}
+.feature-aside h3.feature-aside-h{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);margin-bottom:16px;font-weight:500}
 .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
 .feature-list li{font-size:.84rem;color:var(--text-mid);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
 .feature-list svg{width:16px;height:16px;color:var(--green);flex-shrink:0;margin-top:1px}
@@ -303,7 +305,7 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
 .footer-links a{font-size:.82rem;font-weight:300;color:var(--text-soft);text-decoration:none;transition:color .2s,padding-left .2s}
 .footer-links a:hover{color:var(--blue);padding-left:4px}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;gap:16px;flex-wrap:wrap}
-.footer-copy{font-size:.75rem;color:#AAA}
+.footer-copy{font-size:.75rem;color:#595959}
 .socials{display:flex;gap:10px}
 .soc{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
 .soc svg{width:16px;height:16px}
@@ -345,6 +347,8 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <div id="progress-bar"></div>
 
 <!-- NAV -->
@@ -367,6 +371,7 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
   </button>
 </nav>
 
+<main id="main-content">
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-orb hero-orb-1" id="orb1"></div>
@@ -573,7 +578,7 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
           </div>
         </div>
         <div class="feature-aside">
-          <h4>What we delivered</h4>
+          <h3 class="feature-aside-h">What we delivered</h3>
           <ul class="feature-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Automated lead assignment rules</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>External lead capture &amp; sync</li>
@@ -610,21 +615,21 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
     </div>
     <div class="testi-grid">
       <div class="tcard reveal d1">
-        <div class="tcard-stars" aria-label="5 out of 5 stars">
+        <div class="tcard-stars" role="img" aria-label="5 out of 5 stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
         </div>
         <p class="tcard-quote">"Saiful was very professional, personable and helped with our needs within our time constraints. I would recommend him for more projects."</p>
         <div class="tcard-meta"><div class="tcard-avatar">ED</div><div class="tcard-who"><b>Education</b><span>United States · 39-month engagement</span></div></div>
       </div>
       <div class="tcard reveal d2">
-        <div class="tcard-stars" aria-label="5 out of 5 stars">
+        <div class="tcard-stars" role="img" aria-label="5 out of 5 stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
         </div>
         <p class="tcard-quote">"Saiful and his team have been great to work with. Can't say enough good things about them. Very happy and want to continue our relationship."</p>
         <div class="tcard-meta"><div class="tcard-avatar">FS</div><div class="tcard-who"><b>Financial Services</b><span>United States · 19-month engagement</span></div></div>
       </div>
       <div class="tcard reveal d3">
-        <div class="tcard-stars" aria-label="5 out of 5 stars">
+        <div class="tcard-stars" role="img" aria-label="5 out of 5 stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.6 21.2 6.8 14.2 1.8 9.4l7-.9z"/></svg>
         </div>
         <p class="tcard-quote">"Saiful and his team are amazing! They are my go-to team — always responsive and great at execution. Highly recommend!"</p>
@@ -748,6 +753,8 @@ footer{padding:60px clamp(20px,5vw,64px) 34px;border-top:1px solid var(--border)
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
